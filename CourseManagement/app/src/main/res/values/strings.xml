@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CourseManagement</string>
+
+    <string-array name="CatagoriesName">
+        <item>Mobile App Development</item>
+        <item>Web Development</item>
+        <item>Game Development</item>
+        <item>Mobile App Development</item>
+        <item>Programming Language</item>
+        <item>Desing</item>
+        <item>Network&amp;Security</item>
+    </string-array>
+
+    <string-array name="EnrollStatus">
+        <item>Payable</item>
+        <item>Free</item>
+    </string-array>
+</resources>
