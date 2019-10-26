@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:orientation="vertical"
     app:cardCornerRadius="4dp"
     app:cardElevation="5dp"
@@ -43,7 +44,7 @@
                 android:gravity="center"
                 android:text="Course name"
                 android:textColor="@color/colorPrimary"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
 
             <TextView
@@ -54,33 +55,33 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:drawableLeft="@drawable/dateicon"
+                android:id="@+id/row_courseDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="  26 oct - 21 Feb 2019"
-                />
+                android:drawableLeft="@drawable/dateicon"
+                android:text="  26 oct - 21 Feb 2019" />
 
 
             <LinearLayout
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
 
                 <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/timeicon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Total Hours:"
-                    />
+                    android:text=" Total Hours:" />
 
 
                 <TextView
-                    android:layout_marginLeft="8dp"
+                    android:id="@+id/row_TotalTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="72"
-                    />
+                    android:layout_marginLeft="8dp"
+                    android:text="72" />
 
             </LinearLayout>
 
@@ -90,41 +91,46 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TK."
-                        />
-                     <TextView
-                        android:textSize="20sp"
-                        android:layout_alignParentBottom="true"
+                        android:textSize="20sp" />
 
+                    <TextView
+                        android:id="@+id/row_Cost"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17000/="
-                        />
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:text="17000"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:text="/="
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
 
-
-
                 <Button
+                    android:textColor="#5EFF3A"
                     android:id="@+id/enrollbtnID"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/button_shape"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape"
                     android:text="Enroll" />
             </RelativeLayout>
 

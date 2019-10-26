@@ -6,11 +6,13 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,13 +20,15 @@ import java.util.Date;
 
 public class Add_Course extends AppCompatActivity {
 
-    private EditText courseidET, coursenameET, coursedescpET;
+    private EditText courseidET, coursenameET, coursedescpET,totalHours,totalCost;
     private Spinner courseCatagoriesSP, EnrollStatusSP;
-    private CourseAdpaterRV courseAdpaterRV;
     private String FromDateText = "";
     private String ToDate = "";
     private String [] Catagories;
     private String [] EnrollStatus;
+    private String Course_Catagories ="";
+    private  String Course_EnrollStatus ="";
+    private String cost;
 
     private DatePickerDialog.OnDateSetListener setDateListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -72,8 +76,13 @@ public class Add_Course extends AppCompatActivity {
         courseidET = findViewById(R.id.CouseID);
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);
+        totalHours = findViewById(R.id.totalHoursID);
+        totalCost = findViewById(R.id.costID);
+
         courseCatagoriesSP = findViewById(R.id.catagoriesSP);
         EnrollStatusSP = findViewById(R.id.CoursePaySp);
+
+
 
         Catagories = getResources().getStringArray(R.array.CatagoriesName);
         EnrollStatus = getResources().getStringArray(R.array.EnrollStatus);
@@ -87,6 +96,43 @@ public class Add_Course extends AppCompatActivity {
         courseCatagoriesSP.setAdapter(Catagoriesadapter);
 
 
+        courseCatagoriesSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Course_Catagories = adapterView.getItemAtPosition(i).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        EnrollStatusSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Course_EnrollStatus = adapterView.getItemAtPosition(i).toString();
+
+                if (Course_EnrollStatus.equals("Free"))
+                {
+                    totalCost.setText("0");
+                    cost = "0";
+                }
+                else
+                {
+                    totalCost.setText("");
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
     }
 
@@ -94,13 +140,22 @@ public class Add_Course extends AppCompatActivity {
         String id = courseidET.getText().toString();
         String name = coursenameET.getText().toString();
         String descp = coursedescpET.getText().toString();
-        String catagories = null;
-        String cousePay = null;
+        String duration = FromDateText+"-"+ToDate;
+        String totalTime = totalHours.getText().toString();
+          cost = totalCost.getText().toString();
+        String Catagories = Course_Catagories;
+        String EnrollStatus = Course_EnrollStatus;
 
-        coursePojo course = new coursePojo(Integer.parseInt(id), name, descp, catagories, cousePay);
+        coursePojo course = new coursePojo(Integer.parseInt(id), name, descp, duration,totalTime,Catagories,EnrollStatus,Integer.parseInt(cost));
 
-        MainActivity.coursePojoList.add(course);
-        startActivity(new Intent(Add_Course.this, MainActivity.class));
+
+        final long insertRow = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
+
+        if (insertRow>0)
+        {
+            startActivity(new Intent(Add_Course.this, MainActivity.class));
+        }
+
 
 
     }

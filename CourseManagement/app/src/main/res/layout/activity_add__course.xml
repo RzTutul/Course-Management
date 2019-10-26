@@ -52,9 +52,9 @@
         android:text="Select Course Duration" />
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 
         <TextView
@@ -64,10 +64,10 @@
 
         <Button
             android:id="@+id/fromDatebtn"
-            android:onClick="SelectFromDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21 OCt"/>
+            android:onClick="SelectFromDate"
+            android:text="21 OCt" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,10 +76,10 @@
 
         <Button
             android:id="@+id/toDatebtn"
-            android:onClick="SelectToDate"
-            android:text="22 Feb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="SelectToDate"
+            android:text="22 Feb" />
 
 
     </LinearLayout>
@@ -96,7 +96,6 @@
             android:hint="Total Hours"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <TextView

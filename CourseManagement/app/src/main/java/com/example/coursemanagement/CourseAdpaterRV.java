@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+
 public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.CourseViewHolder>{
 
     private Context context;
@@ -38,6 +39,9 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
         holder.courseName.setText(coursePojoList.get(position).getCourseName());
         holder.courseDesp.setText(coursePojoList.get(position).getCourseDesc());
+        holder.courseDuration.setText(coursePojoList.get(position).getCourseDuration());
+        holder.totalTime.setText(coursePojoList.get(position).getTotalHours());
+        holder.courseCost.setText(String.valueOf(coursePojoList.get(position).getCourseCost()) );
 
         holder.Enrollbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +62,19 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
     public class CourseViewHolder extends RecyclerView.ViewHolder
     {
-        TextView courseName,courseDesp;
+        TextView courseName,courseDesp,courseDuration,totalTime,courseCost;
         Button Enrollbtn;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
-           courseName = itemView.findViewById(R.id.row_courseName);
-
+            courseName = itemView.findViewById(R.id.row_courseName);
             courseDesp = itemView.findViewById(R.id.row_courseDesp);
+            courseDuration = itemView.findViewById(R.id.row_courseDuration);
+            totalTime = itemView.findViewById(R.id.row_TotalTime);
+            courseCost = itemView.findViewById(R.id.row_Cost);
 
             Enrollbtn = itemView.findViewById(R.id.enrollbtnID);
+
 
         }
     }
