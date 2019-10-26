@@ -1,6 +1,8 @@
 package com.example.coursemanagement;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
     private Context context;
     private List<coursePojo> coursePojoList;
+    private UserAuthPreference userAuthPreference;
 
     public CourseAdpaterRV(Context context, List<coursePojo> coursePojoList) {
         this.context = context;
@@ -39,16 +42,34 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
         holder.courseName.setText(coursePojoList.get(position).getCourseName());
         holder.courseDesp.setText(coursePojoList.get(position).getCourseDesc());
-        holder.courseDuration.setText(coursePojoList.get(position).getCourseDuration());
+        holder.courseDuration.setText(" "+coursePojoList.get(position).getCourseDuration());
         holder.totalTime.setText(coursePojoList.get(position).getTotalHours());
         holder.courseCost.setText(String.valueOf(coursePojoList.get(position).getCourseCost()) );
 
+
+        
         holder.Enrollbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Animation shake = AnimationUtils.loadAnimation(context, R.anim.shake);
                 view.startAnimation(shake);
-                Toast.makeText(context, "Ok", Toast.LENGTH_SHORT).show();
+
+                userAuthPreference = new UserAuthPreference(context);
+
+                boolean status = userAuthPreference.getLoginStatus();
+
+                if (status)
+                {
+                    Intent intent = new Intent(context,Enroll_List.class);
+                    context.startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(context,LoginFrom.class);
+                    context.startActivity(intent);
+
+                }
+
             }
         });
 
@@ -78,5 +99,8 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
         }
     }
+
+
+
 
 }

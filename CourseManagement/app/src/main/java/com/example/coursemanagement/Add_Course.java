@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -73,6 +74,7 @@ public class Add_Course extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
+
         courseidET = findViewById(R.id.CouseID);
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);

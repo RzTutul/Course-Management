@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="SelectFromDate"
-            android:text="21 OCt" />
+            android:text="Date" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="SelectToDate"
-            android:text="22 Feb" />
+            android:text="Date" />
 
 
     </LinearLayout>

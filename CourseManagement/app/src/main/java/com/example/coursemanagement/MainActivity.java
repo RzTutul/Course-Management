@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         CourseRV = findViewById(R.id.courseRV);
 
+        setTitle("All Courses");
+
         coursePojoList = CourseDatebase.getInstance(this).getCourseDao().getAllCourse();
 
         courseAdpaterRV = new CourseAdpaterRV(this,coursePojoList);

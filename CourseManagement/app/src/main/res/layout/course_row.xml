@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:orientation="vertical"
     app:cardCornerRadius="4dp"
     app:cardElevation="5dp"
@@ -14,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="210dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -37,105 +36,125 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/row_courseName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Course name"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:id="@+id/row_courseDesp"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Course Description"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/row_courseDuration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/dateicon"
-                android:text="  26 oct - 21 Feb 2019" />
-
-
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
 
                 <TextView
-
+                    android:id="@+id/row_courseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/timeicon"
-                    android:text=" Total Hours:" />
+                    android:gravity="center"
+                    android:text="Course name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
 
 
                 <TextView
-                    android:id="@+id/row_TotalTime"
+                    android:id="@+id/row_courseDesp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="72" />
+                    android:layout_height="60dp"
+                    android:text="Course Description"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
 
-            <RelativeLayout
+            <LinearLayout
+                android:layout_weight="1.2"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp">
+
+                <TextView
+                    android:id="@+id/row_courseDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/dateicon"
+                    android:text=" 26 oct - 21 Feb 2019" />
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TK."
-                        android:textSize="20sp" />
+                        android:drawableLeft="@drawable/timeicon"
+                        android:text=" Total Hours:" />
+
 
                     <TextView
-                        android:id="@+id/row_Cost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:text="17000"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:text="/="
-                        android:textSize="20sp" />
+                        android:id="@+id/row_TotalTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="72" />
 
                 </LinearLayout>
 
 
-                <Button
-                    android:textColor="#5EFF3A"
-                    android:id="@+id/enrollbtnID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/button_shape"
-                    android:text="Enroll" />
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TK."
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/row_Cost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:text="17000"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:text="/="
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
 
 
-            />
+                    <Button
+                        android:textColor="#5EFF3A"
+                        android:id="@+id/enrollbtnID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_shape"
+                        android:text="Enroll" />
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
         </LinearLayout>
 
 

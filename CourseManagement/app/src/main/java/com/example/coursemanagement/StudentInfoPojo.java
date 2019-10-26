@@ -1,0 +1,63 @@
+package com.example.coursemanagement;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "Student_info")
+public class StudentInfoPojo {
+    @PrimaryKey(autoGenerate = true)
+    private int std_id;
+    private String std_name;
+    private String std_email;
+    private String std_phone;
+    private String std_password;
+
+
+    public StudentInfoPojo(int std_id, String std_name, String std_email, String std_phone, String std_password) {
+        this.std_id = std_id;
+        this.std_name = std_name;
+        this.std_email = std_email;
+        this.std_phone = std_phone;
+        this.std_password = std_password;
+    }
+
+    public int getStd_id() {
+        return std_id;
+    }
+
+    public void setStd_id(int std_id) {
+        this.std_id = std_id;
+    }
+
+    public String getStd_name() {
+        return std_name;
+    }
+
+    public void setStd_name(String std_name) {
+        this.std_name = std_name;
+    }
+
+    public String getStd_email() {
+        return std_email;
+    }
+
+    public void setStd_email(String std_email) {
+        this.std_email = std_email;
+    }
+
+    public String getStd_phone() {
+        return std_phone;
+    }
+
+    public void setStd_phone(String std_phone) {
+        this.std_phone = std_phone;
+    }
+
+    public String getStd_password() {
+        return std_password;
+    }
+
+    public void setStd_password(String std_password) {
+        this.std_password = std_password;
+    }
+}
