@@ -5,140 +5,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="60"
     tools:context=".Add_Course">
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/CouseID"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Course ID"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_weight="5"
+                android:id="@+id/CouseID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course ID"
+                android:inputType="numberDecimal" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/CouseNameID"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Course Name" />
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/CouseNameID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course Name" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/couseDescID"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description"
-            android:inputType="textLongMessage" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/couseDescID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textLongMessage" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Select Course Duration" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="From: " />
+            android:layout_marginTop="10dp"
+            android:text="Select Course Duration" />
 
-        <Button
-            android:id="@+id/fromDatebtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_weight="5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="SelectFromDate"
-            android:text="Date" />
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From: " />
+
+            <Button
+                android:id="@+id/fromDatebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="SelectFromDate"
+                android:text="Date" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="   To : " />
+
+            <Button
+                android:id="@+id/toDatebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="SelectToDate"
+                android:text="Date" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/totalHoursID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total Hours"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   To : " />
+            android:layout_marginTop="10dp"
+            android:text="Select Catagories" />
+
+        <Spinner
+            android:layout_weight="5"
+            android:id="@+id/catagoriesSP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Select Enroll" />
+
+        <Spinner
+            android:layout_weight="5"
+            android:id="@+id/CoursePaySp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/costID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cost"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
-            android:id="@+id/toDatebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="SelectToDate"
-            android:text="Date" />
+            android:layout_weight="5"
 
-
-    </LinearLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/totalHoursID"
+            android:id="@+id/SaveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Total Hours"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:onClick="saveCourse"
+            android:text="Save" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Select Catagories" />
-
-    <Spinner
-        android:id="@+id/catagoriesSP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Select Enroll" />
-
-    <Spinner
-        android:id="@+id/CoursePaySp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/costID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Cost"
-            android:inputType="number" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/SaveBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="saveCourse"
-        android:text="Save" />
 
 </LinearLayout>

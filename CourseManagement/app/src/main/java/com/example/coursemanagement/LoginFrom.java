@@ -20,11 +20,11 @@ public class LoginFrom extends AppCompatActivity {
 
         preference = new UserAuthPreference(this);
 
-        boolean status = preference.getLoginStatus();
+   /*     boolean status = preference.getLoginStatus();
         if (status)
         {
             startActivity(new Intent(LoginFrom.this,Enroll_List.class));
-        }
+        }*/
 
         loginbtn = findViewById(R.id.loginbtn);
         emailET = findViewById(R.id.EmailID);
@@ -39,10 +39,10 @@ public class LoginFrom extends AppCompatActivity {
 
                 if (email.equals("admin") && pass.equals("admin"))
                 {
-                    startActivity(new Intent(LoginFrom.this,Add_Course.class));
+                    startActivity(new Intent(LoginFrom.this,AdminPanelForm.class));
 
-                    preference.SetLoginStatus(true);
                 }
+
             }
         });
 

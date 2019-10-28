@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CourseManagement</string>
+    <string name="text">Date : 26 Oct - 28 Dec 2019 \n No. of Classes/ Sessions : 24 \nTotal Hours : 72\n Last Date of Registration : 26 Oct 2019 \nClass Schedule : Saturday - 3:00 PM - 6:00 PM Friday - 3:00 PM - 6:00 PM \nvenue : Bangladesh IT Institute (BITI) \'OPOLOK\' (3rd floor), 225 Senpara Parbota, Mirpur-10, Dhaka-1216.</string>
 
     <string-array name="CatagoriesName">
         <item>Mobile App Development</item>

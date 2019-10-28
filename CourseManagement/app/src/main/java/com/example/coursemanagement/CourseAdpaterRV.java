@@ -1,5 +1,6 @@
 package com.example.coursemanagement;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,11 +24,15 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     private Context context;
     private List<coursePojo> coursePojoList;
     private UserAuthPreference userAuthPreference;
+    private String modifyText;
 
-    public CourseAdpaterRV(Context context, List<coursePojo> coursePojoList) {
+    public CourseAdpaterRV(Context context, List<coursePojo> coursePojoList,String modifyText) {
         this.context = context;
         this.coursePojoList = coursePojoList;
+        this.modifyText = modifyText;
+
     }
+
 
     @NonNull
     @Override
@@ -38,7 +43,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CourseViewHolder holder, final int position) {
 
         holder.courseName.setText(coursePojoList.get(position).getCourseName());
         holder.courseDesp.setText(coursePojoList.get(position).getCourseDesc());
@@ -46,8 +51,86 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
         holder.totalTime.setText(coursePojoList.get(position).getTotalHours());
         holder.courseCost.setText(String.valueOf(coursePojoList.get(position).getCourseCost()) );
 
+    
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        
+                if (modifyText.equals("modify"))
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Course Details");
+                    builder.setIcon(R.drawable.dateicon);
+                    LayoutInflater inflater = LayoutInflater.from(context);
+
+                    View view1 = inflater.inflate(R.layout.admin_edit_dilog,null);
+                    
+                    final  TextView CourseName = view1.findViewById(R.id.A_courseNameTV);
+                    
+                    CourseName.setText(coursePojoList.get(position).getCourseName());
+                    
+                    final Button Editbtn = view1.findViewById(R.id.dialog_editbtn);
+                    final Button Deletebtn = view1.findViewById(R.id.dialog_deletebtn);
+
+                    builder.setView(view1);
+
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
+                    
+                    Editbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    
+                    Deletebtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Course Details");
+                    builder.setIcon(R.drawable.dateicon);
+                    LayoutInflater inflater = LayoutInflater.from(context);
+
+                    View view1 = inflater.inflate(R.layout.course_list_custom_dilog,null);
+
+                    final Button Enrollbtn = view1.findViewById(R.id.enrollbtn);
+                    final Button WishListbtn = view1.findViewById(R.id.wishlistbtn);
+
+                    builder.setView(view1);
+
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Enrollbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(context, "Enrolled", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+                    WishListbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(context, "Added WishListed", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+
+
+                }
+
+
+
+
+            }
+        });
+
         holder.Enrollbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -21,4 +21,7 @@ public interface CourseDao {
     @Query("select * from course_information order by courseID desc")
     List<coursePojo> getAllCourse();
 
+    @Query("Select * from course_information where courseID like:id")
+    coursePojo getCourseID(int id);
+
 }
