@@ -1,4 +1,4 @@
-package com.example.coursemanagement;
+package com.example.coursemanagement.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginFrom extends AppCompatActivity {
+import com.example.coursemanagement.R;
+import com.example.coursemanagement.shared_preference.UserAuthPreference;
+
+public class LoginFrom_activity extends AppCompatActivity {
 
     private Button loginbtn;
     private EditText emailET,passwordET;
@@ -23,7 +26,7 @@ public class LoginFrom extends AppCompatActivity {
    /*     boolean status = preference.getLoginStatus();
         if (status)
         {
-            startActivity(new Intent(LoginFrom.this,Enroll_List.class));
+            startActivity(new Intent(LoginFrom_activity.this,Enroll_List_activity.class));
         }*/
 
         loginbtn = findViewById(R.id.loginbtn);
@@ -39,8 +42,9 @@ public class LoginFrom extends AppCompatActivity {
 
                 if (email.equals("admin") && pass.equals("admin"))
                 {
-                    startActivity(new Intent(LoginFrom.this,AdminPanelForm.class));
+                    startActivity(new Intent(LoginFrom_activity.this, AdminPanelForm_activity.class));
 
+                    finish();
                 }
 
             }
@@ -52,6 +56,6 @@ public class LoginFrom extends AppCompatActivity {
 
     public void SignUp(View view) {
 
-        startActivity(new Intent(LoginFrom.this,StudentRegistrationFrom.class));
+        startActivity(new Intent(LoginFrom_activity.this, StudentRegistrationFrom_Activity.class));
     }
 }

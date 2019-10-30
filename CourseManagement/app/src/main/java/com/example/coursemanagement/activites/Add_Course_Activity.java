@@ -1,10 +1,9 @@
-package com.example.coursemanagement;
+package com.example.coursemanagement.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,13 +12,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.example.coursemanagement.R;
+import com.example.coursemanagement.db.CourseDatebase;
+import com.example.coursemanagement.entitites.Course_Pojo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Add_Course extends AppCompatActivity {
+public class Add_Course_Activity extends AppCompatActivity {
 
     private EditText courseidET, coursenameET, coursedescpET,totalHours,totalCost;
     private Spinner courseCatagoriesSP, EnrollStatusSP;
@@ -30,6 +32,7 @@ public class Add_Course extends AppCompatActivity {
     private String Course_Catagories ="";
     private  String Course_EnrollStatus ="";
     private String cost;
+    private String imagePath=null;
 
     private DatePickerDialog.OnDateSetListener setDateListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -75,7 +78,7 @@ public class Add_Course extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
 
-        courseidET = findViewById(R.id.CouseID);
+
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);
         totalHours = findViewById(R.id.totalHoursID);
@@ -139,7 +142,7 @@ public class Add_Course extends AppCompatActivity {
     }
 
     public void saveCourse(View view) {
-        String id = courseidET.getText().toString();
+
         String name = coursenameET.getText().toString();
         String descp = coursedescpET.getText().toString();
         String duration = FromDateText+"-"+ToDate;
@@ -148,14 +151,16 @@ public class Add_Course extends AppCompatActivity {
         String Catagories = Course_Catagories;
         String EnrollStatus = Course_EnrollStatus;
 
-        coursePojo course = new coursePojo(Integer.parseInt(id), name, descp, duration,totalTime,Catagories,EnrollStatus,Integer.parseInt(cost));
+        Course_Pojo course = new Course_Pojo(name, descp,imagePath, duration,totalTime,Catagories,EnrollStatus,Integer.parseInt(cost));
 
 
         final long insertRow = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
 
         if (insertRow>0)
         {
-            startActivity(new Intent(Add_Course.this, MainActivity.class));
+            startActivity(new Intent(Add_Course_Activity.this, MainActivity.class));
+
+            finish();
         }
 
 
@@ -188,4 +193,6 @@ public class Add_Course extends AppCompatActivity {
     }
 
 
+    public void SelectImage(View view) {
+    }
 }

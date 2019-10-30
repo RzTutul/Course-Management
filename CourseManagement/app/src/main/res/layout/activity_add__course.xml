@@ -6,25 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="60"
-    tools:context=".Add_Course">
+    tools:context=".activites.Add_Course_Activity">
+
+
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_weight="5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_weight="5"
-                android:id="@+id/CouseID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Course ID"
-                android:inputType="numberDecimal" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:layout_weight="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -50,8 +38,33 @@
                 android:inputType="textLongMessage" />
         </com.google.android.material.textfield.TextInputLayout>
 
+    <LinearLayout
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Select Image" />
+        />
+        <Button
+            android:drawableLeft="@drawable/selectimagelogo"
+            android:id="@+id/imagebtn"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            android:textAllCaps="false"
+            android:onClick="SelectImage"
+            />
+    </LinearLayout>
+
+
+
+    <TextView
             android:layout_weight="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

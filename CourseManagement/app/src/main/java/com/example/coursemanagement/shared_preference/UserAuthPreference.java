@@ -1,4 +1,4 @@
-package com.example.coursemanagement;
+package com.example.coursemanagement.shared_preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;

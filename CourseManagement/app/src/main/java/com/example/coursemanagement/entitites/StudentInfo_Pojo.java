@@ -1,10 +1,11 @@
-package com.example.coursemanagement;
+package com.example.coursemanagement.entitites;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Student_info")
-public class StudentInfoPojo {
+public class StudentInfo_Pojo {
     @PrimaryKey(autoGenerate = true)
     private int std_id;
     private String std_name;
@@ -13,8 +14,16 @@ public class StudentInfoPojo {
     private String std_password;
 
 
-    public StudentInfoPojo(int std_id, String std_name, String std_email, String std_phone, String std_password) {
+    @Ignore
+    public StudentInfo_Pojo(int std_id, String std_name, String std_email, String std_phone, String std_password) {
         this.std_id = std_id;
+        this.std_name = std_name;
+        this.std_email = std_email;
+        this.std_phone = std_phone;
+        this.std_password = std_password;
+    }
+
+    public StudentInfo_Pojo(String std_name, String std_email, String std_phone, String std_password) {
         this.std_name = std_name;
         this.std_email = std_email;
         this.std_phone = std_phone;

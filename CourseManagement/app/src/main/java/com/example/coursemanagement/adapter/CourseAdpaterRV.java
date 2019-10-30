@@ -1,9 +1,8 @@
-package com.example.coursemanagement;
+package com.example.coursemanagement.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +15,23 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.coursemanagement.R;
+import com.example.coursemanagement.entitites.Course_Pojo;
+import com.example.coursemanagement.shared_preference.UserAuthPreference;
+import com.example.coursemanagement.activites.Enroll_List_activity;
+import com.example.coursemanagement.activites.LoginFrom_activity;
+
 import java.util.List;
 
 
 public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.CourseViewHolder>{
 
     private Context context;
-    private List<coursePojo> coursePojoList;
+    private List<Course_Pojo> coursePojoList;
     private UserAuthPreference userAuthPreference;
-    private String modifyText;
+    private String modifyText ;
 
-    public CourseAdpaterRV(Context context, List<coursePojo> coursePojoList,String modifyText) {
+    public CourseAdpaterRV(Context context, List<Course_Pojo> coursePojoList, String modifyText) {
         this.context = context;
         this.coursePojoList = coursePojoList;
         this.modifyText = modifyText;
@@ -92,7 +97,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                     });
 
                 }
-                else {
+                else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Course Details");
                     builder.setIcon(R.drawable.dateicon);
@@ -143,12 +148,12 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
                 if (status)
                 {
-                    Intent intent = new Intent(context,Enroll_List.class);
+                    Intent intent = new Intent(context, Enroll_List_activity.class);
                     context.startActivity(intent);
                 }
                 else
                 {
-                    Intent intent = new Intent(context,LoginFrom.class);
+                    Intent intent = new Intent(context, LoginFrom_activity.class);
                     context.startActivity(intent);
 
                 }

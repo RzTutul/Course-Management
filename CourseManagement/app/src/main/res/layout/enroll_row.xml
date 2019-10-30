@@ -7,6 +7,7 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="5dp"
     android:layout_margin="6dp"
+
     >
 
 
@@ -99,13 +100,10 @@
                 </LinearLayout>
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
@@ -118,7 +116,7 @@
                             android:textSize="20sp" />
 
                         <TextView
-                            android:textStyle="bold"
+
                             android:id="@+id/row_Cost"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -135,18 +133,6 @@
 
                     </LinearLayout>
 
-
-                    <Button
-                        android:textColor="#5EFF3A"
-                        android:id="@+id/enrollbtnID"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/button_shape"
-                        android:text="Enroll" />
-                </RelativeLayout>
 
 
 

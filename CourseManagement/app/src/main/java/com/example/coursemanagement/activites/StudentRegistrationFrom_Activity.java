@@ -1,10 +1,12 @@
-package com.example.coursemanagement;
+package com.example.coursemanagement.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class StudentRegistrationFrom extends AppCompatActivity {
+import com.example.coursemanagement.R;
+
+public class StudentRegistrationFrom_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
