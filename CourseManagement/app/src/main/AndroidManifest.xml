@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activites.ImageActivity"></activity>
+        <activity android:name=".activites.CourseList_MainActivity"></activity>
         <activity android:name=".activites.AdminPanelForm_activity" />
         <activity android:name=".activites.Enroll_List_activity" />
         <activity android:name=".activites.Add_Course_Activity" />
         <activity android:name=".activites.StudentRegistrationFrom_Activity" />
         <activity android:name=".activites.LoginFrom_activity" />
-        <activity android:name=".activites.MainActivity">
+        <activity android:name=".activites.Admin_CourseRV_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,9 +32,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

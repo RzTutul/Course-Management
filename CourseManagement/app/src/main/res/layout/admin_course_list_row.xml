@@ -22,7 +22,7 @@
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/row_CourseImage"
+                android:id="@+id/row_A_CourseImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -43,7 +43,7 @@
                 android:layout_height="0dp">
 
                 <TextView
-                    android:id="@+id/row_courseName"
+                    android:id="@+id/row_A_courseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -53,7 +53,7 @@
 
 
                 <TextView
-                    android:id="@+id/row_courseDesp"
+                    android:id="@+id/row_A_courseDesp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:text="Course Description"
@@ -69,7 +69,7 @@
                 android:layout_height="0dp">
 
                 <TextView
-                    android:id="@+id/row_courseDuration"
+                    android:id="@+id/row_A_courseDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/dateicon"
@@ -84,6 +84,7 @@
 
                     <TextView
 
+                        android:id="@+id/row_A_total_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/timeicon"
@@ -105,6 +106,7 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
+                        android:layout_marginLeft="40dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -119,8 +121,9 @@
                             android:textSize="20sp" />
 
                         <TextView
+
                             android:textStyle="bold"
-                            android:id="@+id/row_Cost"
+                            android:id="@+id/row_A_Cost"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
@@ -137,16 +140,6 @@
                     </LinearLayout>
 
 
-                    <Button
-                        android:textColor="#5EFF3A"
-                        android:id="@+id/enrollbtnID"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/button_shape"
-                        android:text="Enroll" />
                 </RelativeLayout>
 
 

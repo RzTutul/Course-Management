@@ -31,8 +31,7 @@ public class AdminPanelForm_activity extends AppCompatActivity {
         EditCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminPanelForm_activity.this, MainActivity.class);
-                intent.putExtra("modify","modify");
+                Intent intent = new Intent(AdminPanelForm_activity.this, Admin_CourseRV_Activity.class);
                 startActivity(intent);
                 finish();
             }

@@ -39,7 +39,6 @@ public  abstract class EnrollAdapterRV extends RecyclerView.Adapter<EnrollAdapte
     @Override
     public void onBindViewHolder(@NonNull EnrollViewHolder holder, int position) {
 
-
     }
 
     @Override

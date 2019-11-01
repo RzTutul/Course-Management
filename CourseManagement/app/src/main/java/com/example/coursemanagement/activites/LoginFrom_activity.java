@@ -58,4 +58,6 @@ public class LoginFrom_activity extends AppCompatActivity {
 
         startActivity(new Intent(LoginFrom_activity.this, StudentRegistrationFrom_Activity.class));
     }
+
+
 }

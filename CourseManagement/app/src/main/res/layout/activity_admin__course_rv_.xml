@@ -4,17 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activites.CourseList_MainActivity">
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/courseRV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-
+    tools:context=".activites.Admin_CourseRV_Activity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Course_RV_Admin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>

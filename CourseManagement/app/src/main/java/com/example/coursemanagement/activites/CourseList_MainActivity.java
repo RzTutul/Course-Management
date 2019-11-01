@@ -2,7 +2,6 @@ package com.example.coursemanagement.activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.example.coursemanagement.adapter.CourseAdpaterRV;
@@ -21,12 +19,12 @@ import com.example.coursemanagement.entitites.Course_Pojo;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class CourseList_MainActivity extends AppCompatActivity {
 
     private RecyclerView CourseRV;
     private CourseAdpaterRV courseAdpaterRV;
     public List<Course_Pojo> coursePojoList;
-    private Bundle extras;
+
 
 
     @Override
@@ -38,34 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setTitle("All Courses");
         coursePojoList = CourseDatebase.getInstance(this).getCourseDao().getAllCourse();
 
-        extras = getIntent().getExtras();
+        courseAdpaterRV = new CourseAdpaterRV(this, coursePojoList);
 
-
-        if (extras != null) {
-            String user = extras.getString("modify");
-            if (user == null)
-            {
-                courseAdpaterRV = new CourseAdpaterRV(this, coursePojoList, "user");
-
-            }
-            else {
-                Toast.makeText(this, "Admin Mode ON" + user, Toast.LENGTH_SHORT).show();
-                setTitle("DashBoard");
-                courseAdpaterRV = new CourseAdpaterRV(this, coursePojoList, user);
-            }
-            }
-        else {
-            courseAdpaterRV = new CourseAdpaterRV(this, coursePojoList, "user");
-
-        }
-
-
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+       LinearLayoutManager llm = new LinearLayoutManager(this);
 
        // GridLayoutManager gridLayout = new GridLayoutManager(this,2);
-
         CourseRV.setLayoutManager(llm);
-
         CourseRV.setAdapter(courseAdpaterRV);
 
     }
@@ -81,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login:
-                startActivity(new Intent(MainActivity.this, LoginFrom_activity.class));
+                startActivity(new Intent(CourseList_MainActivity.this, LoginFrom_activity.class));
                 Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
         }
 

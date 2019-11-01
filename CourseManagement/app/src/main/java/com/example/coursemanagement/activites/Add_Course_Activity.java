@@ -1,17 +1,27 @@
 package com.example.coursemanagement.activites;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.coursemanagement.R;
 import com.example.coursemanagement.db.CourseDatebase;
@@ -22,7 +32,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Add_Course_Activity extends AppCompatActivity {
+    private static final String TAG = Add_Course_Activity.class.getSimpleName();
 
+    private static final int GALLERY_REQUEST_CODE =123 ;
+    private static final int REQUEST_STORAGE_PERMSIONCODE_CODE =321 ;
     private EditText courseidET, coursenameET, coursedescpET,totalHours,totalCost;
     private Spinner courseCatagoriesSP, EnrollStatusSP;
     private String FromDateText = "";
@@ -32,7 +45,9 @@ public class Add_Course_Activity extends AppCompatActivity {
     private String Course_Catagories ="";
     private  String Course_EnrollStatus ="";
     private String cost;
-    private String imagePath=null;
+    private String imagePath;
+    private ImageView CourseImage;
+
 
     private DatePickerDialog.OnDateSetListener setDateListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -77,7 +92,8 @@ public class Add_Course_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
-
+        long id =0;
+        id = getIntent().getLongExtra("id",-1);
 
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);
@@ -87,6 +103,7 @@ public class Add_Course_Activity extends AppCompatActivity {
         courseCatagoriesSP = findViewById(R.id.catagoriesSP);
         EnrollStatusSP = findViewById(R.id.CoursePaySp);
 
+        CourseImage = findViewById(R.id.CourseImage);
 
 
         Catagories = getResources().getStringArray(R.array.CatagoriesName);
@@ -97,6 +114,24 @@ public class Add_Course_Activity extends AppCompatActivity {
         ArrayAdapter<String> ErollAdapeter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,EnrollStatus);
 
 
+        Toast.makeText(this, "AddCourse"+id, Toast.LENGTH_SHORT).show();
+        if (id>0)
+        {
+            Course_Pojo coursePojo = CourseDatebase.getInstance(this).getCourseDao().getCourseID(id);
+            coursenameET.setText(coursePojo.getCourseName());
+            coursedescpET.setText(coursePojo.getCourseDesc());
+            totalHours.setText(coursePojo.getTotalHours());
+            String C_catagories =coursePojo.getCourseCatagories(); //the value you want the position for
+
+            Toast.makeText(this, ""+C_catagories, Toast.LENGTH_SHORT).show();
+      /*      ArrayAdapter myAdap = (ArrayAdapter) courseCatagoriesSP.getAdapter(); //cast to an ArrayAdapter
+
+            int spinnerPosition = myAdap.getPosition(C_catagories);
+
+//set the default according to value
+            courseCatagoriesSP.setSelection(spinnerPosition);*/
+            totalCost.setText(String.valueOf(coursePojo.getCourseCost()));
+        }
         EnrollStatusSP.setAdapter(ErollAdapeter);
         courseCatagoriesSP.setAdapter(Catagoriesadapter);
 
@@ -158,7 +193,8 @@ public class Add_Course_Activity extends AppCompatActivity {
 
         if (insertRow>0)
         {
-            startActivity(new Intent(Add_Course_Activity.this, MainActivity.class));
+            Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
+            startActivity(intent);
 
             finish();
         }
@@ -194,5 +230,37 @@ public class Add_Course_Activity extends AppCompatActivity {
 
 
     public void SelectImage(View view) {
+
+        if (IsStroagePermissionAccept())
+        {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
+        }
     }
+
+    private boolean IsStroagePermissionAccept(){
+        String[] permsionlist={Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            requestPermissions(permsionlist,REQUEST_STORAGE_PERMSIONCODE_CODE);
+            return false;
+        }
+        return true;
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK){
+            String[] projection = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(data.getData(),projection, null, null, null);
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(projection[0]);
+            imagePath = cursor.getString(index);
+           Log.e(TAG, "onActivityResult: "+imagePath);
+            Bitmap bmp = BitmapFactory.decodeFile(imagePath);
+            CourseImage.setImageBitmap(bmp);
+
+        }
+
+    }
+
 }

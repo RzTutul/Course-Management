@@ -3,12 +3,15 @@ package com.example.coursemanagement.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,8 @@ import com.example.coursemanagement.shared_preference.UserAuthPreference;
 import com.example.coursemanagement.activites.Enroll_List_activity;
 import com.example.coursemanagement.activites.LoginFrom_activity;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 
@@ -29,12 +34,12 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     private Context context;
     private List<Course_Pojo> coursePojoList;
     private UserAuthPreference userAuthPreference;
-    private String modifyText ;
+    Bitmap bmp;
 
-    public CourseAdpaterRV(Context context, List<Course_Pojo> coursePojoList, String modifyText) {
+    public CourseAdpaterRV(Context context, List<Course_Pojo> coursePojoList) {
         this.context = context;
         this.coursePojoList = coursePojoList;
-        this.modifyText = modifyText;
+
 
     }
 
@@ -42,68 +47,48 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     @NonNull
     @Override
     public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.course_row, parent,false);
-        return new CourseViewHolder(view) ;
+
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
+            View view = layoutInflater.inflate(R.layout.course_row, parent,false);
+            return new CourseViewHolder(view) ;
+
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final CourseViewHolder holder, final int position) {
 
-        holder.courseName.setText(coursePojoList.get(position).getCourseName());
-        holder.courseDesp.setText(coursePojoList.get(position).getCourseDesc());
-        holder.courseDuration.setText(" "+coursePojoList.get(position).getCourseDuration());
-        holder.totalTime.setText(coursePojoList.get(position).getTotalHours());
-        holder.courseCost.setText(String.valueOf(coursePojoList.get(position).getCourseCost()) );
 
-    
+            holder.courseName.setText(coursePojoList.get(position).getCourseName());
+            holder.courseDesp.setText(coursePojoList.get(position).getCourseDesc());
+            holder.courseDuration.setText(" "+coursePojoList.get(position).getCourseDuration());
+            holder.totalTime.setText(coursePojoList.get(position).getTotalHours());
+            holder.courseCost.setText(String.valueOf(coursePojoList.get(position).getCourseCost()) );
+               bmp = BitmapFactory.decodeFile(coursePojoList.get(position).getImage());
+            holder.courseImage.setImageBitmap(bmp);
+
+
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (modifyText.equals("modify"))
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Course Details");
-                    builder.setIcon(R.drawable.dateicon);
-                    LayoutInflater inflater = LayoutInflater.from(context);
 
-                    View view1 = inflater.inflate(R.layout.admin_edit_dilog,null);
-                    
-                    final  TextView CourseName = view1.findViewById(R.id.A_courseNameTV);
-                    
-                    CourseName.setText(coursePojoList.get(position).getCourseName());
-                    
-                    final Button Editbtn = view1.findViewById(R.id.dialog_editbtn);
-                    final Button Deletebtn = view1.findViewById(R.id.dialog_deletebtn);
 
-                    builder.setView(view1);
-
-                    final AlertDialog dialog = builder.create();
-                    dialog.show();
-                    
-                    Editbtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    
-                    Deletebtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-                else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Course Details");
                     builder.setIcon(R.drawable.dateicon);
                     LayoutInflater inflater = LayoutInflater.from(context);
 
                     View view1 = inflater.inflate(R.layout.course_list_custom_dilog,null);
+
+                    TextView CourseName = view1.findViewById(R.id.dialg_CourseNamTV);
+                    ImageView CourseImage = view1.findViewById(R.id.dialog_courseImage);
+                    CourseName.setText(coursePojoList.get(position).getCourseName());
+                    Bitmap bitmap = BitmapFactory.decodeFile(coursePojoList.get(position).getImage());
+                    CourseImage.setImageBitmap(bitmap);
+
 
                     final Button Enrollbtn = view1.findViewById(R.id.enrollbtn);
                     final Button WishListbtn = view1.findViewById(R.id.wishlistbtn);
@@ -133,7 +118,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
 
 
-            }
+
         });
 
         holder.Enrollbtn.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +158,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     {
         TextView courseName,courseDesp,courseDuration,totalTime,courseCost;
         Button Enrollbtn;
+        ImageView courseImage;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -183,7 +169,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
             courseCost = itemView.findViewById(R.id.row_Cost);
 
             Enrollbtn = itemView.findViewById(R.id.enrollbtnID);
-
+            courseImage= itemView.findViewById(R.id.row_CourseImage);
 
         }
     }
