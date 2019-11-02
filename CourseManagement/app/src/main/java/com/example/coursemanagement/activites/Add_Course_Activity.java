@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -34,19 +35,22 @@ import java.util.Date;
 public class Add_Course_Activity extends AppCompatActivity {
     private static final String TAG = Add_Course_Activity.class.getSimpleName();
 
-    private static final int GALLERY_REQUEST_CODE =123 ;
-    private static final int REQUEST_STORAGE_PERMSIONCODE_CODE =321 ;
-    private EditText courseidET, coursenameET, coursedescpET,totalHours,totalCost;
+    private static final int GALLERY_REQUEST_CODE = 123;
+    private static final int REQUEST_STORAGE_PERMSIONCODE_CODE = 321;
+    private EditText courseidET, coursenameET, coursedescpET, totalHours, totalCost;
     private Spinner courseCatagoriesSP, EnrollStatusSP;
     private String FromDateText = "";
     private String ToDate = "";
-    private String [] Catagories;
-    private String [] EnrollStatus;
-    private String Course_Catagories ="";
-    private  String Course_EnrollStatus ="";
+    private String[] Catagories;
+    private String[] EnrollStatus;
+    private String Course_Catagories = "";
+    private String Course_EnrollStatus = "";
     private String cost;
     private String imagePath;
     private ImageView CourseImage;
+    private Button savebtn, UpdateBtn, FromDate, toDate;
+    private Context context = this;
+    private long id;
 
 
     private DatePickerDialog.OnDateSetListener setDateListener =
@@ -62,7 +66,6 @@ public class Add_Course_Activity extends AppCompatActivity {
 
                     FromDateText = simpleDateFormat.format(date);
 
-                    Button FromDate = findViewById(R.id.fromDatebtn);
 
                     FromDate.setText(FromDateText);
 
@@ -79,7 +82,6 @@ public class Add_Course_Activity extends AppCompatActivity {
             Date date = calendar.getTime();
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yy");
-            Button toDate = findViewById(R.id.toDatebtn);
 
             ToDate = sdf.format(date);
             toDate.setText(ToDate);
@@ -92,13 +94,17 @@ public class Add_Course_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
-        long id =0;
-        id = getIntent().getLongExtra("id",-1);
+
 
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);
         totalHours = findViewById(R.id.totalHoursID);
         totalCost = findViewById(R.id.costID);
+        savebtn = findViewById(R.id.SaveBtn);
+        UpdateBtn = findViewById(R.id.updatebtn);
+        FromDate = findViewById(R.id.fromDatebtn);
+        toDate = findViewById(R.id.toDatebtn);
+
 
         courseCatagoriesSP = findViewById(R.id.catagoriesSP);
         EnrollStatusSP = findViewById(R.id.CoursePaySp);
@@ -109,31 +115,47 @@ public class Add_Course_Activity extends AppCompatActivity {
         Catagories = getResources().getStringArray(R.array.CatagoriesName);
         EnrollStatus = getResources().getStringArray(R.array.EnrollStatus);
 
-        ArrayAdapter<String> Catagoriesadapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,Catagories);
+        ArrayAdapter<String> Catagoriesadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Catagories);
 
-        ArrayAdapter<String> ErollAdapeter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,EnrollStatus);
+        ArrayAdapter<String> ErollAdapeter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, EnrollStatus);
+
+        EnrollStatusSP.setAdapter(ErollAdapeter);
+        courseCatagoriesSP.setAdapter(Catagoriesadapter);
+
+        UpdateBtn.setVisibility(View.GONE);
 
 
-        Toast.makeText(this, "AddCourse"+id, Toast.LENGTH_SHORT).show();
-        if (id>0)
-        {
+        id = getIntent().getLongExtra("id", -1);
+
+        if (id > 0) {
             Course_Pojo coursePojo = CourseDatebase.getInstance(this).getCourseDao().getCourseID(id);
             coursenameET.setText(coursePojo.getCourseName());
             coursedescpET.setText(coursePojo.getCourseDesc());
+            Bitmap bmp = BitmapFactory.decodeFile(coursePojo.getImage());
+            CourseImage.setImageBitmap(bmp);
+
+            String Duration = coursePojo.getCourseDuration();
+            String[] value = Duration.split("-");
+            FromDate.setText(value[0]);
+            toDate.setText(value[1]);
+
             totalHours.setText(coursePojo.getTotalHours());
-            String C_catagories =coursePojo.getCourseCatagories(); //the value you want the position for
 
-            Toast.makeText(this, ""+C_catagories, Toast.LENGTH_SHORT).show();
-      /*      ArrayAdapter myAdap = (ArrayAdapter) courseCatagoriesSP.getAdapter(); //cast to an ArrayAdapter
+            String C_catagories = coursePojo.getCourseCatagories(); //the value you want the position for
+            int spinnerPosition = Catagoriesadapter.getPosition(C_catagories);
+            courseCatagoriesSP.setSelection(spinnerPosition);
 
-            int spinnerPosition = myAdap.getPosition(C_catagories);
+            String C_Cost = coursePojo.getCourseErollStatus();
+            int pos = ErollAdapeter.getPosition(C_Cost);
+            EnrollStatusSP.setSelection(pos);
 
-//set the default according to value
-            courseCatagoriesSP.setSelection(spinnerPosition);*/
             totalCost.setText(String.valueOf(coursePojo.getCourseCost()));
+
+            savebtn.setVisibility(View.GONE);
+            UpdateBtn.setVisibility(View.VISIBLE);
+
+
         }
-        EnrollStatusSP.setAdapter(ErollAdapeter);
-        courseCatagoriesSP.setAdapter(Catagoriesadapter);
 
 
         courseCatagoriesSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -155,15 +177,6 @@ public class Add_Course_Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Course_EnrollStatus = adapterView.getItemAtPosition(i).toString();
 
-                if (Course_EnrollStatus.equals("Free"))
-                {
-                    totalCost.setText("0");
-                    cost = "0";
-                }
-                else
-                {
-                    totalCost.setText("");
-                }
 
             }
 
@@ -180,25 +193,22 @@ public class Add_Course_Activity extends AppCompatActivity {
 
         String name = coursenameET.getText().toString();
         String descp = coursedescpET.getText().toString();
-        String duration = FromDateText+"-"+ToDate;
+        String duration = FromDateText + "-" + ToDate;
         String totalTime = totalHours.getText().toString();
-          cost = totalCost.getText().toString();
+        cost = totalCost.getText().toString();
         String Catagories = Course_Catagories;
         String EnrollStatus = Course_EnrollStatus;
 
-        Course_Pojo course = new Course_Pojo(name, descp,imagePath, duration,totalTime,Catagories,EnrollStatus,Integer.parseInt(cost));
+        Course_Pojo course = new Course_Pojo(name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
 
 
-        final long insertRow = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
+        final long insert = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
 
-        if (insertRow>0)
-        {
+        if (insert > 0) {
             Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
             startActivity(intent);
 
-            finish();
         }
-
 
 
     }
@@ -231,31 +241,31 @@ public class Add_Course_Activity extends AppCompatActivity {
 
     public void SelectImage(View view) {
 
-        if (IsStroagePermissionAccept())
-        {
+        if (IsStroagePermissionAccept()) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
         }
     }
 
-    private boolean IsStroagePermissionAccept(){
-        String[] permsionlist={Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            requestPermissions(permsionlist,REQUEST_STORAGE_PERMSIONCODE_CODE);
+    private boolean IsStroagePermissionAccept() {
+        String[] permsionlist = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(permsionlist, REQUEST_STORAGE_PERMSIONCODE_CODE);
             return false;
         }
         return true;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK){
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
             String[] projection = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(data.getData(),projection, null, null, null);
+            Cursor cursor = getContentResolver().query(data.getData(), projection, null, null, null);
             cursor.moveToFirst();
             int index = cursor.getColumnIndex(projection[0]);
             imagePath = cursor.getString(index);
-           Log.e(TAG, "onActivityResult: "+imagePath);
+            Log.e(TAG, "onActivityResult: " + imagePath);
             Bitmap bmp = BitmapFactory.decodeFile(imagePath);
             CourseImage.setImageBitmap(bmp);
 
@@ -263,4 +273,32 @@ public class Add_Course_Activity extends AppCompatActivity {
 
     }
 
+
+    public void UpdateCourse(View view) {
+
+        String name = coursenameET.getText().toString();
+        String descp = coursedescpET.getText().toString();
+        String Fromdate = FromDate.getText().toString();//Button
+        String Todate = toDate.getText().toString();//Button
+        String duration = Fromdate +"-"+ Todate;
+        String totalTime = totalHours.getText().toString();
+        cost = totalCost.getText().toString();
+        String Catagories = Course_Catagories;
+        String EnrollStatus = Course_EnrollStatus;
+
+
+        Course_Pojo course = new Course_Pojo(id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
+
+
+        final int Updated = CourseDatebase.getInstance(this).getCourseDao().UpdateCourse(course);
+
+        Toast.makeText(this, ""+Updated, Toast.LENGTH_SHORT).show();
+        if (Updated > 0) {
+            Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
+            startActivity(intent);
+
+            finish();
+        }
+
+    }
 }

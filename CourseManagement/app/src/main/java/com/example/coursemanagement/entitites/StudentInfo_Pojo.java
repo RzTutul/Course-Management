@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Student_info")
 public class StudentInfo_Pojo {
     @PrimaryKey(autoGenerate = true)
-    private int std_id;
+    private long std_id;
     private String std_name;
     private String std_email;
     private String std_phone;
@@ -15,7 +15,7 @@ public class StudentInfo_Pojo {
 
 
     @Ignore
-    public StudentInfo_Pojo(int std_id, String std_name, String std_email, String std_phone, String std_password) {
+    public StudentInfo_Pojo(long std_id, String std_name, String std_email, String std_phone, String std_password) {
         this.std_id = std_id;
         this.std_name = std_name;
         this.std_email = std_email;
@@ -30,11 +30,11 @@ public class StudentInfo_Pojo {
         this.std_password = std_password;
     }
 
-    public int getStd_id() {
+    public long getStd_id() {
         return std_id;
     }
 
-    public void setStd_id(int std_id) {
+    public void setStd_id(long std_id) {
         this.std_id = std_id;
     }
 

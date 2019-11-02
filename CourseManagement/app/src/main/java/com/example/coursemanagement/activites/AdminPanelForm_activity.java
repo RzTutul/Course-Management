@@ -18,6 +18,7 @@ public class AdminPanelForm_activity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_panel_form);
         EditCV = findViewById(R.id.EditCV);
         AddNewCourseCV = findViewById(R.id.AddcourseCV);
+        setTitle("Admin Panel");
 
         AddNewCourseCV.setOnClickListener(new View.OnClickListener() {
             @Override

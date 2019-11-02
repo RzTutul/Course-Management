@@ -130,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Select Catagories" />
+            android:text="Select Categories" />
 
         <Spinner
             android:layout_weight="5"
@@ -168,6 +168,7 @@
 
 
         <Button
+
             android:background="@color/colorAccent"
             android:textColor="#fff"
             android:layout_weight="5"
@@ -177,6 +178,16 @@
             android:onClick="saveCourse"
             android:text="Save" />
 
+    <Button
+        android:visibility="gone"
+        android:id="@+id/updatebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:background="@color/colorAccent"
+        android:text="Update"
+        android:onClick="UpdateCourse"
+        android:textColor="#fff" />
 
 
 </LinearLayout>

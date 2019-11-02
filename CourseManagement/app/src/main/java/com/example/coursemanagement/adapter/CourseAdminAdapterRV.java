@@ -2,6 +2,7 @@ package com.example.coursemanagement.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coursemanagement.R;
 import com.example.coursemanagement.activites.Add_Course_Activity;
+import com.example.coursemanagement.activites.Admin_CourseRV_Activity;
 import com.example.coursemanagement.activites.Enroll_List_activity;
 import com.example.coursemanagement.activites.LoginFrom_activity;
 import com.example.coursemanagement.db.CourseDatebase;
@@ -67,7 +69,7 @@ public   class CourseAdminAdapterRV extends RecyclerView.Adapter<CourseAdminAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Course Details");
                 builder.setIcon(R.drawable.dateicon);
                 LayoutInflater inflater = LayoutInflater.from(context);
@@ -95,7 +97,6 @@ public   class CourseAdminAdapterRV extends RecyclerView.Adapter<CourseAdminAdap
                         long id = coursePojo.getCourseID();
 
                         Intent intent = new Intent(context, Add_Course_Activity.class);
-                        Toast.makeText(context, ""+id, Toast.LENGTH_SHORT).show();
 
                         intent.putExtra("id",id);
                         context.startActivity(intent);
@@ -105,7 +106,29 @@ public   class CourseAdminAdapterRV extends RecyclerView.Adapter<CourseAdminAdap
                 Deletebtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
+
+
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+
+                        builder1.setTitle("Delete Course?");
+                        builder1.setMessage("Once you delete this Course,it cannot be undone");
+                        builder1.setIcon(R.drawable.ic_delete_black_24dp);
+
+                        builder1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Course_Pojo coursePojo = coursePojoList.get(position);
+                                  CourseDatebase.getInstance(context).getCourseDao().DeleteCourse(coursePojo);
+                                Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context,Admin_CourseRV_Activity.class);
+                                context.startActivity(intent);
+                            }
+                        });
+
+                        builder1.setNegativeButton("Cancel",null);
+
+                        AlertDialog alert = builder1.create();
+                        alert.show();
                     }
                 });
 

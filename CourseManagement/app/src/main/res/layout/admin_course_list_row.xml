@@ -83,8 +83,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-
-                        android:id="@+id/row_A_total_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/timeicon"
@@ -92,7 +90,7 @@
 
 
                     <TextView
-                        android:id="@+id/row_TotalTime"
+                        android:id="@+id/row_A_total_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"

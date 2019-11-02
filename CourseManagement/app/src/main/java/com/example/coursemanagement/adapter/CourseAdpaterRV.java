@@ -2,6 +2,7 @@ package com.example.coursemanagement.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -127,21 +128,39 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                 Animation shake = AnimationUtils.loadAnimation(context, R.anim.shake);
                 view.startAnimation(shake);
 
-                userAuthPreference = new UserAuthPreference(context);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                boolean status = userAuthPreference.getLoginStatus();
+                builder.setTitle("Do you want enroll this course?");
+                builder.setIcon(R.drawable.enrollicondilog);
 
-                if (status)
-                {
-                    Intent intent = new Intent(context, Enroll_List_activity.class);
-                    context.startActivity(intent);
-                }
-                else
-                {
-                    Intent intent = new Intent(context, LoginFrom_activity.class);
-                    context.startActivity(intent);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        userAuthPreference = new UserAuthPreference(context);
+                        boolean status = userAuthPreference.getLoginStatus();
 
-                }
+                        if (status)
+                        {
+                            Intent intent = new Intent(context, Enroll_List_activity.class);
+                            context.startActivity(intent);
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(context, LoginFrom_activity.class);
+                            context.startActivity(intent);
+
+                        }
+                    }
+                });
+
+                builder.setNegativeButton("No",null);
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+
 
             }
         });

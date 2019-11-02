@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".activites.LoginFrom_activity">
 
 
@@ -16,6 +17,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center"
             android:id="@+id/EmailID"
             android:drawableRight="@drawable/emailicon"
             android:padding="10dp"
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center"
             android:id="@+id/passwordETID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +41,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonshapegreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"

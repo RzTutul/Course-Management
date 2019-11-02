@@ -10,6 +10,7 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.coursemanagement.daos.CourseDao;
+import com.example.coursemanagement.daos.StudentinfoDao;
 import com.example.coursemanagement.entitites.Course_Pojo;
 import com.example.coursemanagement.entitites.Discout_Pojo;
 import com.example.coursemanagement.entitites.Enroll_list_Pojo;
@@ -22,6 +23,7 @@ import com.example.coursemanagement.entitites.WishList_pojo;
 public abstract class CourseDatebase extends RoomDatabase {
 
    public abstract CourseDao getCourseDao();
+   public abstract StudentinfoDao getStudentDao();
    private static CourseDatebase db;
   /* private static Migration MIGRATION_1_2 = new Migration(1,2) {
        @Override

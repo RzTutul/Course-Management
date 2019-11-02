@@ -22,12 +22,11 @@ public class LoginFrom_activity extends AppCompatActivity {
         setContentView(R.layout.activity_login_from);
 
         preference = new UserAuthPreference(this);
-
-   /*     boolean status = preference.getLoginStatus();
+         boolean status = preference.getLoginStatus();
         if (status)
         {
             startActivity(new Intent(LoginFrom_activity.this,Enroll_List_activity.class));
-        }*/
+        }
 
         loginbtn = findViewById(R.id.loginbtn);
         emailET = findViewById(R.id.EmailID);
@@ -57,6 +56,7 @@ public class LoginFrom_activity extends AppCompatActivity {
     public void SignUp(View view) {
 
         startActivity(new Intent(LoginFrom_activity.this, StudentRegistrationFrom_Activity.class));
+        finish();
     }
 
 
