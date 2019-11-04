@@ -20,12 +20,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coursemanagement.R;
+import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Course_Pojo;
+import com.example.coursemanagement.entitites.Enroll_list_Pojo;
 import com.example.coursemanagement.shared_preference.UserAuthPreference;
-import com.example.coursemanagement.activites.Enroll_List_activity;
-import com.example.coursemanagement.activites.LoginFrom_activity;
-
-import org.w3c.dom.Text;
+import com.example.coursemanagement.user_activites.Enroll_List_activity;
+import com.example.coursemanagement.user_activites.LoginFrom_activity;
+import com.example.coursemanagement.shared_preference.UserIdPreference;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     private Context context;
     private List<Course_Pojo> coursePojoList;
     private UserAuthPreference userAuthPreference;
+    private UserIdPreference userIdPreference;
     Bitmap bmp;
 
     public CourseAdpaterRV(Context context, List<Course_Pojo> coursePojoList) {
@@ -138,11 +140,21 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                     public void onClick(DialogInterface dialog, int which) {
                         userAuthPreference = new UserAuthPreference(context);
                         boolean status = userAuthPreference.getLoginStatus();
+                        userAuthPreference = new UserAuthPreference(context);
 
                         if (status)
                         {
-                            Intent intent = new Intent(context, Enroll_List_activity.class);
-                            context.startActivity(intent);
+                            Course_Pojo coursePojo = coursePojoList.get(position);
+                            long c_id = coursePojo.getCourseID();
+                            long s_id = userIdPreference.getLoginID();
+
+                            Enroll_list_Pojo enrollListPojo = new Enroll_list_Pojo(c_id,s_id);
+                            long insertEnrol = CourseDatebase.getInstance(context).getEnrollDao().AddEntroll(enrollListPojo);
+                            if (insertEnrol>0)
+                            {
+                                Intent intent = new Intent(context, Enroll_List_activity.class);
+                                context.startActivity(intent);
+                            }
                         }
                         else
                         {

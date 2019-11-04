@@ -1,4 +1,4 @@
-package com.example.coursemanagement.activites;
+package com.example.coursemanagement.admin_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import com.example.coursemanagement.R;
 import com.example.coursemanagement.adapter.CourseAdminAdapterRV;
-import com.example.coursemanagement.adapter.CourseAdpaterRV;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Course_Pojo;
 

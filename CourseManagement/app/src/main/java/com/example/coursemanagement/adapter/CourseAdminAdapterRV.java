@@ -9,8 +9,6 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,10 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coursemanagement.R;
-import com.example.coursemanagement.activites.Add_Course_Activity;
-import com.example.coursemanagement.activites.Admin_CourseRV_Activity;
-import com.example.coursemanagement.activites.Enroll_List_activity;
-import com.example.coursemanagement.activites.LoginFrom_activity;
+import com.example.coursemanagement.admin_activity.Add_Course_Activity;
+import com.example.coursemanagement.admin_activity.Admin_CourseRV_Activity;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Course_Pojo;
 import com.example.coursemanagement.shared_preference.UserAuthPreference;
@@ -93,6 +89,7 @@ public   class CourseAdminAdapterRV extends RecyclerView.Adapter<CourseAdminAdap
                     @Override
                     public void onClick(View view) {
                         Course_Pojo coursePojo = coursePojoList.get(position);
+
 
                         long id = coursePojo.getCourseID();
 

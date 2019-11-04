@@ -10,18 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coursemanagement.R;
+import com.example.coursemanagement.entitites.Course_Pojo;
 import com.example.coursemanagement.entitites.Enroll_list_Pojo;
+import com.example.coursemanagement.entitites.Single_UserEnroll_wishList_Pojo;
+
 
 import org.w3c.dom.Text;
 
 import java.util.List;
 
-public  abstract class EnrollAdapterRV extends RecyclerView.Adapter<EnrollAdapterRV.EnrollViewHolder>{
+public  class EnrollAdapterRV extends RecyclerView.Adapter<EnrollAdapterRV.EnrollViewHolder>{
 
     private Context context;
-    private List<Enroll_list_Pojo> enrollListPojos;
+    private List<Single_UserEnroll_wishList_Pojo> enrollListPojos;
 
-    public EnrollAdapterRV(Context context, List<Enroll_list_Pojo> enrollListPojos) {
+    public EnrollAdapterRV(Context context, List<Single_UserEnroll_wishList_Pojo> enrollListPojos) {
         this.context = context;
         this.enrollListPojos = enrollListPojos;
     }
@@ -39,6 +42,8 @@ public  abstract class EnrollAdapterRV extends RecyclerView.Adapter<EnrollAdapte
     @Override
     public void onBindViewHolder(@NonNull EnrollViewHolder holder, int position) {
 
+        holder.courseName.setText(enrollListPojos.get(position).getCourseName());
+
     }
 
     @Override
@@ -53,13 +58,11 @@ public  abstract class EnrollAdapterRV extends RecyclerView.Adapter<EnrollAdapte
 
         public EnrollViewHolder(@NonNull View itemView) {
             super(itemView);
-            courseName = itemView.findViewById(R.id.row_courseName);
-            CourseDescription = itemView.findViewById(R.id.row_courseDesp);
-            duration = itemView.findViewById(R.id.row_courseDuration);
-            totalTime = itemView.findViewById(R.id.row_TotalTime);
-            cost = itemView.findViewById(R.id.row_Cost);
-
-
+            courseName = itemView.findViewById(R.id.e_row_courseName);
+            CourseDescription = itemView.findViewById(R.id.e_row_courseDesp);
+            duration = itemView.findViewById(R.id.e_row_courseDuration);
+            totalTime = itemView.findViewById(R.id.e_row_TotalTime);
+            cost = itemView.findViewById(R.id.e_row_Cost);
 
         }
     }

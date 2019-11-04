@@ -1,4 +1,4 @@
-package com.example.coursemanagement.activites;
+package com.example.coursemanagement.user_activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +11,14 @@ import com.example.coursemanagement.R;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.StudentInfo_Pojo;
 import com.example.coursemanagement.shared_preference.UserAuthPreference;
+import com.example.coursemanagement.shared_preference.UserIdPreference;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class StudentRegistrationFrom_Activity extends AppCompatActivity {
 
     TextInputEditText stdNameET, stdEmailET, stdPhoneET, stdPasswordET, stdConfirmPassET;
     private UserAuthPreference userAuthPreference;
+    private UserIdPreference userIdPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,6 @@ public class StudentRegistrationFrom_Activity extends AppCompatActivity {
     }
 
     public void Registerbtn(View view) {
-
-
-
         String name = stdNameET.getText().toString();
         String email = stdEmailET.getText().toString();
         String phone = stdPhoneET.getText().toString();
@@ -64,13 +63,16 @@ public class StudentRegistrationFrom_Activity extends AppCompatActivity {
 
             long insertStd = CourseDatebase.getInstance(this).getStudentDao().InsertNewStudent(studentInfoPojo);
 
-            if (insertStd>0)
+            long id  = CourseDatebase.getInstance(this).getStudentDao().getId(email,pass);
+            if (insertStd>0 && id>0)
             {
+
                 Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
                 userAuthPreference = new UserAuthPreference(this);
+                userIdPreference = new UserIdPreference(this);
                 userAuthPreference.SetLoginStatus(true);
+                userIdPreference.setLogin(id);
                 startActivity(new Intent(StudentRegistrationFrom_Activity.this,CourseList_MainActivity.class));
-
                 finish();
             }
 

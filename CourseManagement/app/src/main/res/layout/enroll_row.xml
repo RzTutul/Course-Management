@@ -43,7 +43,7 @@
                 android:layout_height="0dp">
 
                 <TextView
-                    android:id="@+id/row_courseName"
+                    android:id="@+id/e_row_courseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -53,7 +53,7 @@
 
 
                 <TextView
-                    android:id="@+id/row_courseDesp"
+                    android:id="@+id/e_row_courseDesp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:text="Course Description"
@@ -69,7 +69,7 @@
                 android:layout_height="0dp">
 
                 <TextView
-                    android:id="@+id/row_courseDuration"
+                    android:id="@+id/e_row_courseDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/dateicon"
@@ -91,7 +91,7 @@
 
 
                     <TextView
-                        android:id="@+id/row_TotalTime"
+                        android:id="@+id/e_row_TotalTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -117,7 +117,7 @@
 
                         <TextView
 
-                            android:id="@+id/row_Cost"
+                            android:id="@+id/e_row_Cost"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"

@@ -1,4 +1,4 @@
-package com.example.coursemanagement.activites;
+package com.example.coursemanagement.admin_activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,11 +26,13 @@ import android.widget.Toast;
 
 import com.example.coursemanagement.R;
 import com.example.coursemanagement.db.CourseDatebase;
+import com.example.coursemanagement.entitites.Categories_Pojo;
 import com.example.coursemanagement.entitites.Course_Pojo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Add_Course_Activity extends AppCompatActivity {
     private static final String TAG = Add_Course_Activity.class.getSimpleName();
@@ -41,7 +43,7 @@ public class Add_Course_Activity extends AppCompatActivity {
     private Spinner courseCatagoriesSP, EnrollStatusSP;
     private String FromDateText = "";
     private String ToDate = "";
-    private String[] Catagories;
+    private List<String> Catagories;
     private String[] EnrollStatus;
     private String Course_Catagories = "";
     private String Course_EnrollStatus = "";
@@ -110,9 +112,30 @@ public class Add_Course_Activity extends AppCompatActivity {
         EnrollStatusSP = findViewById(R.id.CoursePaySp);
 
         CourseImage = findViewById(R.id.CourseImage);
+        Catagories = CourseDatebase.getInstance(this).getCatagoriesDao().getCatagories();
+
+        if (Catagories.isEmpty())
+        {
+
+            Categories_Pojo cata1 = new Categories_Pojo("Java Porgramming Basic","Programming Language");
+            Categories_Pojo cata2 = new Categories_Pojo("Mobile App development Basic","Mobile App Development");
+            Categories_Pojo cata3 = new Categories_Pojo("Web App development","Web  Development");
+            Categories_Pojo cata4 = new Categories_Pojo("Game development","Game Development");
+            Categories_Pojo cata5 = new Categories_Pojo("Graphic Desing","Desing");
+
+            CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata1);
+            CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata2);
+            CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata3);
+            CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata4);
+            CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata5);
+
+        }
 
 
-        Catagories = getResources().getStringArray(R.array.CatagoriesName);
+
+       // Catagories = getResources().getStringArray(R.array.CatagoriesName);
+
+
         EnrollStatus = getResources().getStringArray(R.array.EnrollStatus);
 
         ArrayAdapter<String> Catagoriesadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Catagories);

@@ -1,4 +1,4 @@
-package com.example.coursemanagement.activites;
+package com.example.coursemanagement.admin_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;

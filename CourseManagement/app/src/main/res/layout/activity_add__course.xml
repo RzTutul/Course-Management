@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="60"
-    tools:context=".activites.Add_Course_Activity">
+    tools:context=".admin_activity.Add_Course_Activity">
 
 
 

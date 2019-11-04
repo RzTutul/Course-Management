@@ -11,13 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activites.Admin_CourseRV_Activity"></activity>
-        <activity android:name=".activites.AdminPanelForm_activity" />
-        <activity android:name=".activites.Enroll_List_activity" />
-        <activity android:name=".activites.Add_Course_Activity" />
-        <activity android:name=".activites.StudentRegistrationFrom_Activity" />
-        <activity android:name=".activites.LoginFrom_activity" />
-        <activity android:name=".activites.CourseList_MainActivity">
+        <activity android:name=".admin_activity.AllenrollList_Activity"></activity>
+        <activity android:name=".admin_activity.AllEnrollList_Activity" />
+        <activity android:name=".admin_activity.Admin_CourseRV_Activity" />
+        <activity android:name=".admin_activity.AdminPanelForm_activity" />
+        <activity android:name=".user_activites.Enroll_List_activity" />
+        <activity android:name=".admin_activity.Add_Course_Activity" />
+        <activity android:name=".user_activites.StudentRegistrationFrom_Activity" />
+        <activity android:name=".user_activites.LoginFrom_activity" />
+        <activity android:name=".user_activites.CourseList_MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,10 +1,14 @@
 package com.example.coursemanagement.entitites;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "course_information")
+
 public class Course_Pojo {
     @PrimaryKey(autoGenerate = true)
     private long courseID;
@@ -41,6 +45,7 @@ public class Course_Pojo {
         this.courseErollStatus = courseErollStatus;
         this.courseCost = courseCost;
     }
+
 
     public String getImage() {
         return image;

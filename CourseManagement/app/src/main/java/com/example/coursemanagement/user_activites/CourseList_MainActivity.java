@@ -1,4 +1,4 @@
-package com.example.coursemanagement.activites;
+package com.example.coursemanagement.user_activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.coursemanagement.adapter.CourseAdpaterRV;
 import com.example.coursemanagement.R;
+import com.example.coursemanagement.admin_activity.AdminPanelForm_activity;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Course_Pojo;
 import com.example.coursemanagement.shared_preference.UserAuthPreference;
