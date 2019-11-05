@@ -52,7 +52,8 @@ public class Add_Course_Activity extends AppCompatActivity {
     private ImageView CourseImage;
     private Button savebtn, UpdateBtn, FromDate, toDate;
     private Context context = this;
-    private long id;
+    private String id;
+    private ArrayAdapter<String> Catagoriesadapter;
 
 
     private DatePickerDialog.OnDateSetListener setDateListener =
@@ -96,8 +97,7 @@ public class Add_Course_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
-
-
+        courseidET = findViewById(R.id.couseID);
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);
         totalHours = findViewById(R.id.totalHoursID);
@@ -117,12 +117,13 @@ public class Add_Course_Activity extends AppCompatActivity {
         if (Catagories.isEmpty())
         {
 
+            Categories_Pojo defaultval = new Categories_Pojo("null","Select Categories");
             Categories_Pojo cata1 = new Categories_Pojo("Java Porgramming Basic","Programming Language");
             Categories_Pojo cata2 = new Categories_Pojo("Mobile App development Basic","Mobile App Development");
             Categories_Pojo cata3 = new Categories_Pojo("Web App development","Web  Development");
             Categories_Pojo cata4 = new Categories_Pojo("Game development","Game Development");
             Categories_Pojo cata5 = new Categories_Pojo("Graphic Desing","Desing");
-
+            CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(defaultval);
             CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata1);
             CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata2);
             CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata3);
@@ -138,7 +139,7 @@ public class Add_Course_Activity extends AppCompatActivity {
 
         EnrollStatus = getResources().getStringArray(R.array.EnrollStatus);
 
-        ArrayAdapter<String> Catagoriesadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Catagories);
+       Catagoriesadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Catagories);
 
         ArrayAdapter<String> ErollAdapeter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, EnrollStatus);
 
@@ -148,10 +149,11 @@ public class Add_Course_Activity extends AppCompatActivity {
         UpdateBtn.setVisibility(View.GONE);
 
 
-        id = getIntent().getLongExtra("id", -1);
+        id = getIntent().getStringExtra("id");
 
-        if (id > 0) {
+        if (id != null) {
             Course_Pojo coursePojo = CourseDatebase.getInstance(this).getCourseDao().getCourseID(id);
+            courseidET.setText(coursePojo.getCourseID());
             coursenameET.setText(coursePojo.getCourseName());
             coursedescpET.setText(coursePojo.getCourseDesc());
             Bitmap bmp = BitmapFactory.decodeFile(coursePojo.getImage());
@@ -180,7 +182,6 @@ public class Add_Course_Activity extends AppCompatActivity {
 
         }
 
-
         courseCatagoriesSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -200,6 +201,14 @@ public class Add_Course_Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Course_EnrollStatus = adapterView.getItemAtPosition(i).toString();
 
+                if (Course_EnrollStatus.equals("Free"))
+                {
+                    totalCost.setText("0");
+                }
+                else
+                {
+                    totalCost.setText("");
+                }
 
             }
 
@@ -214,6 +223,8 @@ public class Add_Course_Activity extends AppCompatActivity {
 
     public void saveCourse(View view) {
 
+
+        String c_id = courseidET.getText().toString();
         String name = coursenameET.getText().toString();
         String descp = coursedescpET.getText().toString();
         String duration = FromDateText + "-" + ToDate;
@@ -222,7 +233,7 @@ public class Add_Course_Activity extends AppCompatActivity {
         String Catagories = Course_Catagories;
         String EnrollStatus = Course_EnrollStatus;
 
-        Course_Pojo course = new Course_Pojo(name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
+        Course_Pojo course = new Course_Pojo(c_id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
 
 
         final long insert = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
@@ -232,7 +243,6 @@ public class Add_Course_Activity extends AppCompatActivity {
             startActivity(intent);
 
         }
-
 
     }
 

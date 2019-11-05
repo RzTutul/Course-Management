@@ -13,6 +13,6 @@ public interface EnrollDao {
     @Insert
     long AddEntroll(Enroll_list_Pojo enrollListPojo);
 
-    @Query("select * from 'Enroll_list'")
-    List<String> getAllValue();
+/*    @Query("select * from 'Enroll_list'")
+    List<String> getAllValue();*/
 }

@@ -22,14 +22,14 @@ public class AllenrollList_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_allenroll_list_);
         enrollTV = findViewById(R.id.EnrollID);
 
-        List<String> enrollListPojos = new ArrayList<>();
+    /*    List<String> enrollListPojos = new ArrayList<>();
         enrollListPojos = CourseDatebase.getInstance(this).getEnrollDao().getAllValue();
 
         for (String id : enrollListPojos)
         {
 
             enrollTV.setText(id);
-        }
+        }*/
 
 
     }

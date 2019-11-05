@@ -63,15 +63,15 @@ public class StudentRegistrationFrom_Activity extends AppCompatActivity {
 
             long insertStd = CourseDatebase.getInstance(this).getStudentDao().InsertNewStudent(studentInfoPojo);
 
-            long id  = CourseDatebase.getInstance(this).getStudentDao().getId(email,pass);
-            if (insertStd>0 && id>0)
+            //long id  = CourseDatebase.getInstance(this).getStudentDao().getId(email,pass);
+            if (insertStd>0 /*&& id>0*/)
             {
 
                 Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
                 userAuthPreference = new UserAuthPreference(this);
                 userIdPreference = new UserIdPreference(this);
                 userAuthPreference.SetLoginStatus(true);
-                userIdPreference.setLogin(id);
+              //  userIdPreference.setLogin(id);
                 startActivity(new Intent(StudentRegistrationFrom_Activity.this,CourseList_MainActivity.class));
                 finish();
             }

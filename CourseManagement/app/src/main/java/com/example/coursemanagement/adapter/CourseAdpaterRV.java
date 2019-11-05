@@ -145,7 +145,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                         if (status)
                         {
                             Course_Pojo coursePojo = coursePojoList.get(position);
-                            long c_id = coursePojo.getCourseID();
+                            String c_id = coursePojo.getCourseID();
                             long s_id = userIdPreference.getLoginID();
 
                             Enroll_list_Pojo enrollListPojo = new Enroll_list_Pojo(c_id,s_id);

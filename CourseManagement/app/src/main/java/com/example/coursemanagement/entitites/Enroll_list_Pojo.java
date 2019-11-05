@@ -20,18 +20,18 @@ import static androidx.room.ForeignKey.CASCADE;
 public class Enroll_list_Pojo {
     @PrimaryKey(autoGenerate = true)
     private long eid;
-    private long c_id;
+    private String c_id;
     private long student_id;
 
     @Ignore
-    public Enroll_list_Pojo(long eid, long c_id, long student_id) {
+    public Enroll_list_Pojo(long eid, String c_id, long student_id) {
         this.eid = eid;
         this.c_id = c_id;
         this.student_id = student_id;
     }
 
 
-    public Enroll_list_Pojo(long c_id, long student_id) {
+    public Enroll_list_Pojo(String c_id, long student_id) {
         this.c_id = c_id;
         this.student_id = student_id;
     }
@@ -44,11 +44,11 @@ public class Enroll_list_Pojo {
         this.eid = eid;
     }
 
-    public long getC_id() {
+    public String getC_id() {
         return c_id;
     }
 
-    public void setC_id(long c_id) {
+    public void setC_id(String c_id) {
         this.c_id = c_id;
     }
 

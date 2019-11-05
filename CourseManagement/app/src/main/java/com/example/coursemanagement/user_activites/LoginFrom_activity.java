@@ -48,7 +48,7 @@ public class LoginFrom_activity extends AppCompatActivity {
 
                 String email = emailET.getText().toString();
                 String pass= passwordET.getText().toString();
-                long id = CourseDatebase.getInstance(context).getStudentDao().getId(email,pass);
+                /*long id = CourseDatebase.getInstance(context).getStudentDao().getId(email,pass);
 
                 if (id>0)
                 {
@@ -60,7 +60,7 @@ public class LoginFrom_activity extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(context, "Wrong Email or Password", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
 
 

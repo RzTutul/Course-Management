@@ -1,5 +1,6 @@
 package com.example.coursemanagement.entitites;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
@@ -10,8 +11,8 @@ import static androidx.room.ForeignKey.CASCADE;
 @Entity(tableName = "course_information")
 
 public class Course_Pojo {
-    @PrimaryKey(autoGenerate = true)
-    private long courseID;
+    @PrimaryKey @NonNull
+    private String courseID;
     private String courseName;
     private String courseDesc;
     private String image;
@@ -22,20 +23,8 @@ public class Course_Pojo {
     private long courseCost;
 
 
-    @Ignore
-    public Course_Pojo(long courseID, String courseName, String courseDesc, String image, String courseDuration, String totalHours, String courseCatagories, String courseErollStatus, long courseCost) {
+    public Course_Pojo(String courseID, String courseName, String courseDesc, String image, String courseDuration, String totalHours, String courseCatagories, String courseErollStatus, long courseCost) {
         this.courseID = courseID;
-        this.courseName = courseName;
-        this.courseDesc = courseDesc;
-        this.image = image;
-        this.courseDuration = courseDuration;
-        this.totalHours = totalHours;
-        this.courseCatagories = courseCatagories;
-        this.courseErollStatus = courseErollStatus;
-        this.courseCost = courseCost;
-    }
-
-    public Course_Pojo(String courseName, String courseDesc, String image, String courseDuration, String totalHours, String courseCatagories, String courseErollStatus, long courseCost) {
         this.courseName = courseName;
         this.courseDesc = courseDesc;
         this.image = image;
@@ -55,11 +44,11 @@ public class Course_Pojo {
         this.image = image;
     }
 
-    public long getCourseID() {
+    public String getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(long courseID) {
+    public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 

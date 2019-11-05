@@ -91,7 +91,7 @@ public   class CourseAdminAdapterRV extends RecyclerView.Adapter<CourseAdminAdap
                         Course_Pojo coursePojo = coursePojoList.get(position);
 
 
-                        long id = coursePojo.getCourseID();
+                        String id = coursePojo.getCourseID();
 
                         Intent intent = new Intent(context, Add_Course_Activity.class);
 
