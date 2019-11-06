@@ -179,7 +179,6 @@ public class Add_Course_Activity extends AppCompatActivity {
             savebtn.setVisibility(View.GONE);
             UpdateBtn.setVisibility(View.VISIBLE);
 
-
         }
 
         courseCatagoriesSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

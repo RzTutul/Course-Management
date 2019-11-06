@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,13 +30,17 @@ import com.example.coursemanagement.user_activites.Enroll_List_activity;
 import com.example.coursemanagement.user_activites.LoginFrom_activity;
 import com.example.coursemanagement.shared_preference.UserIdPreference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.CourseViewHolder>{
+public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.CourseViewHolder> implements
+        Filterable {
 
     private Context context;
     private List<Course_Pojo> coursePojoList;
+    private List<Course_Pojo> courseFilter;
+
     private UserAuthPreference userAuthPreference;
     private UserIdPreference userIdPreference;
     Bitmap bmp;
@@ -42,6 +48,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     public CourseAdpaterRV(Context context, List<Course_Pojo> coursePojoList) {
         this.context = context;
         this.coursePojoList = coursePojoList;
+        this.courseFilter = coursePojoList;
 
 
     }
@@ -62,12 +69,12 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
     public void onBindViewHolder(@NonNull final CourseViewHolder holder, final int position) {
 
 
-            holder.courseName.setText(coursePojoList.get(position).getCourseName());
-            holder.courseDesp.setText(coursePojoList.get(position).getCourseDesc());
-            holder.courseDuration.setText(" "+coursePojoList.get(position).getCourseDuration());
-            holder.totalTime.setText(coursePojoList.get(position).getTotalHours());
-            holder.courseCost.setText(String.valueOf(coursePojoList.get(position).getCourseCost()) );
-               bmp = BitmapFactory.decodeFile(coursePojoList.get(position).getImage());
+            holder.courseName.setText(courseFilter.get(position).getCourseName());
+            holder.courseDesp.setText(courseFilter.get(position).getCourseDesc());
+            holder.courseDuration.setText(" "+courseFilter.get(position).getCourseDuration());
+            holder.totalTime.setText(courseFilter.get(position).getTotalHours());
+            holder.courseCost.setText(String.valueOf(courseFilter.get(position).getCourseCost()) );
+               bmp = BitmapFactory.decodeFile(courseFilter.get(position).getImage());
             holder.courseImage.setImageBitmap(bmp);
 
 
@@ -88,8 +95,8 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
                     TextView CourseName = view1.findViewById(R.id.dialg_CourseNamTV);
                     ImageView CourseImage = view1.findViewById(R.id.dialog_courseImage);
-                    CourseName.setText(coursePojoList.get(position).getCourseName());
-                    Bitmap bitmap = BitmapFactory.decodeFile(coursePojoList.get(position).getImage());
+                    CourseName.setText(courseFilter.get(position).getCourseName());
+                    Bitmap bitmap = BitmapFactory.decodeFile(courseFilter.get(position).getImage());
                     CourseImage.setImageBitmap(bitmap);
 
 
@@ -140,11 +147,11 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                     public void onClick(DialogInterface dialog, int which) {
                         userAuthPreference = new UserAuthPreference(context);
                         boolean status = userAuthPreference.getLoginStatus();
-                        userAuthPreference = new UserAuthPreference(context);
+                        userIdPreference = new UserIdPreference(context);
 
                         if (status)
                         {
-                            Course_Pojo coursePojo = coursePojoList.get(position);
+                            Course_Pojo coursePojo = courseFilter.get(position);
                             String c_id = coursePojo.getCourseID();
                             long s_id = userIdPreference.getLoginID();
 
@@ -152,6 +159,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                             long insertEnrol = CourseDatebase.getInstance(context).getEnrollDao().AddEntroll(enrollListPojo);
                             if (insertEnrol>0)
                             {
+                                Toast.makeText(context, "Enrolled", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(context, Enroll_List_activity.class);
                                 context.startActivity(intent);
                             }
@@ -181,7 +189,42 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
     @Override
     public int getItemCount() {
-        return coursePojoList.size();
+        return courseFilter.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+
+                String query = constraint.toString();
+                if (query.isEmpty()){
+                    courseFilter = coursePojoList;
+                }else{
+                    List<Course_Pojo> tempList = new ArrayList<>();
+                    for (Course_Pojo m : coursePojoList){
+                        if (m.getCourseName().toLowerCase().contains(query) /*||
+                                String.valueOf(m.getReleaseYear()).contains(query) ||
+                                m.getCategory().toLowerCase().contains(query)*/){
+                            tempList.add(m);
+                        }
+                    }
+                    courseFilter = tempList;
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = courseFilter;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                courseFilter= (List<Course_Pojo>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
 

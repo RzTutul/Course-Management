@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "Enroll_list",foreignKeys  ={@ForeignKey(entity = Course_Pojo.class,
+@Entity(tableName = "Enroll_list_tbl",foreignKeys  ={@ForeignKey(entity = Course_Pojo.class,
         parentColumns = "courseID",
         childColumns = "c_id",
         onDelete = CASCADE,

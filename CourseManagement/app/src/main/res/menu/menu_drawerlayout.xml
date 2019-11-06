@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"   tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+android:icon="@drawable/ic_home_black_24dp"
+            android:id="@+id/Home"
+            android:title="Home"
+            />
+
+        <item
+            android:id="@+id/Admindashboard"
+            android:title="Admin DashBoard"
+            />
+
+        <item
+            android:id="@+id/userDashboard"
+            android:title="DashBoard"
+
+            />
+
+
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+
+            <item
+                android:icon="@drawable/ic_share_black_24dp"
+                android:id="@+id/ShareID"
+                android:title="Share with Friends"
+                />
+
+            <item
+                android:id="@+id/aboutId"
+                android:title="About Us"
+                />
+        </menu>
+
+    </item>
+    <item android:title="-----">
+        <menu>
+
+            <item
+                android:icon="@drawable/loginicon"
+                android:id="@+id/loginID"
+                android:title="Login"
+                />
+
+            <item
+                android:id="@+id/logoutid"
+                android:title="Logout"
+                />
+              <item
+                android:id="@+id/exitID"
+                android:title="Exit"
+                />
+
+
+        </menu>
+
+    </item>
+
+
+</menu>

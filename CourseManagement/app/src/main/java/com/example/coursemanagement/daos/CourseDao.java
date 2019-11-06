@@ -20,13 +20,13 @@ public interface CourseDao {
     @Delete
     int DeleteCourse(Course_Pojo coursePojo);
 
-    @Query("select * from course_information order by courseID desc")
+    @Query("select * from course_information_tbl order by courseID desc")
     List<Course_Pojo> getAllCourse();
 
-    @Query("Select * from course_information where courseID like:id")
+    @Query("Select * from course_information_tbl where courseID like:id")
     Course_Pojo getCourseID(String id);
 
-    @Query("select * from course_information where courseID like:id")
+    @Query("select * from course_information_tbl where courseID like:id")
     List<Course_Pojo> getCourseValue(long id);
 
 

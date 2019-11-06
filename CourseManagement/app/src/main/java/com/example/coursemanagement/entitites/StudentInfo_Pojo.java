@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Student_info")
+@Entity(tableName = "Student_info_tbl")
 public class StudentInfo_Pojo {
     @PrimaryKey(autoGenerate = true)
     private long std_id;

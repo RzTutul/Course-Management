@@ -14,9 +14,9 @@ public interface CatagoriesDao {
     @Insert
     long addNewCatagories(Categories_Pojo categoriesPojo);
 
-    @Query("select categories_name from 'categories_list'")
+    @Query("select categories_name from categories_list_tbl")
     List<String> getCatagories();
 
-    @Query("select categories_id from categories_list where categories_name like:cata")
+    @Query("select categories_id from categories_list_tbl where categories_name like:cata")
     long getCatagoriesID(String cata);
 }

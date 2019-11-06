@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "categories_list")
+@Entity(tableName = "categories_list_tbl")
 public class Categories_Pojo {
     @PrimaryKey(autoGenerate = true)
     private long categories_id;

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "course_information")
+@Entity(tableName = "course_information_tbl")
 
 public class Course_Pojo {
     @PrimaryKey @NonNull

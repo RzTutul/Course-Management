@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.coursemanagement.R;
-import com.example.coursemanagement.adapter.EnrollAdapterRV;
+import com.example.coursemanagement.adapter.SingleUserEnrollAdapterRV;
+import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Single_UserEnroll_wishList_Pojo;
+import com.example.coursemanagement.joinquerymodel.StudentWithEnrollCourse;
+import com.example.coursemanagement.shared_preference.UserIdPreference;
 
 import java.util.List;
 
@@ -16,7 +19,9 @@ public class Enroll_List_activity extends AppCompatActivity {
 
     RecyclerView enrollRV;
     List<Single_UserEnroll_wishList_Pojo> enrollListPojos;
-    private EnrollAdapterRV adapterRV;
+    private SingleUserEnrollAdapterRV adapterRV;
+    private UserIdPreference userIdPreference;
+    private List<StudentWithEnrollCourse> student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +29,13 @@ public class Enroll_List_activity extends AppCompatActivity {
         setTitle("Enroll List");
         enrollRV = findViewById(R.id.EnrollRV);
 
-        long id = getIntent().getLongExtra("id",-1);
-        
-        if (id>0)
-        {
-     ///   enrollListPojos = CourseDatebase.getInstance(this).getSinguserDao().getAllValues(id);
-        adapterRV = new EnrollAdapterRV(this,enrollListPojos);
-        }
+        userIdPreference= new UserIdPreference(this);
+        long id = userIdPreference.getLoginID();
+
+        student =CourseDatebase.getInstance(this).getEnrollDao().getEnrollforSingleUSer(id);
+
+        adapterRV = new SingleUserEnrollAdapterRV(this, student);
+
         LinearLayoutManager llm = new LinearLayoutManager(this);
 
         enrollRV.setLayoutManager(llm);

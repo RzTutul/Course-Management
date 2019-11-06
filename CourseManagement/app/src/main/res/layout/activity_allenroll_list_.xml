@@ -4,12 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".admin_activity.AllenrollList_Activity">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/EnrollID"
         android:layout_width="match_parent"
-        android:text="test"
+        android:text="All Student List"
         android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/enrollListRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
