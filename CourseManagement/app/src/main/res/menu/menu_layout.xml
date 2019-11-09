@@ -3,17 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+ <!--   <item
+
+        android:dropDownWidth="10dp"
+        android:id="@+id/spinner"
+        android:title="ActionBar Spinner"
+        app:actionViewClass="android.widget.Spinner"
+        android:background="#ff00"
+        app:showAsAction="always" />
+
+-->
+
     <item
+
         android:id="@+id/search"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
+
     <item
+        android:title="Filter"
         android:id="@+id/filter"
         android:icon="@drawable/ic_filter_list_black_24dp"
-        android:title="filter"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
+
+
 
 
 

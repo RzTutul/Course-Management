@@ -33,14 +33,28 @@ public interface EnrollDao {
     List<StudentWithEnrollCourse> getEnrollforSingleUSer(long id);
 
 
+    @Query("select * from enroll_list_tbl inner join student_info_tbl on " +
+            "enroll_list_tbl.student_id = student_info_tbl.std_id " +
+            "inner join course_information_tbl " +
+            "on course_information_tbl.courseID = enroll_list_tbl.c_id where course_information_tbl.courseName=:courseName")
+    List<StudentWithEnrollCourse> getEnrollforSingleUSerFilter(String courseName);
 
 
-/*
-    @Query("select * from tbl_employee " +
-            "inner join tbl_emp_salary " +
-            "on tbl_emp_salary.employeeId = tbl_employee.emp_id " +
-            "where tbl_employee.emp_id like :empID")
-    EmployeeWithSalary getEmployeeWithSalary(long empID);
-*/
+    @Query("select COUNT(eid) from enroll_list_tbl")
+    long getTotalEnrollStudent();
+
+
+    @Query("select COUNT(eid) from enroll_list_tbl inner join student_info_tbl on " +
+            "enroll_list_tbl.student_id = student_info_tbl.std_id " +
+            "inner join course_information_tbl " +
+            "on course_information_tbl.courseID = enroll_list_tbl.c_id where course_information_tbl.courseName=:CourseName")
+    long getTotalEnrollStudentbyCourse(String CourseName);
+
+
+
+
+
+
+
 
 }

@@ -22,7 +22,7 @@
     <LinearLayout
         android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="200dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/AddcourseCV"
@@ -40,8 +40,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/addcourseicon" />
 
                 <TextView
@@ -73,15 +73,15 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/editcourseicon" />
 
                 <TextView
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Modify"
+                    android:text="Modify Course"
                     android:textSize="20sp"
                     />
 
@@ -97,9 +97,10 @@
         android:layout_marginTop="10dp"
         android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="170dp">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/addCatagoriesCVID"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -114,8 +115,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/addcatagories" />
 
                 <TextView
@@ -146,8 +147,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/addteachericon" />
 
                 <TextView
@@ -170,7 +171,7 @@
         android:layout_marginTop="10dp"
         android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="170dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/enrollCVID"
@@ -188,8 +189,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/enrolllisticon" />
 
                 <TextView
@@ -220,8 +221,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/wishlisticon" />
 
                 <TextView
@@ -244,7 +245,7 @@
         android:layout_marginTop="10dp"
         android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="170dp">
 
         <androidx.cardview.widget.CardView
             android:layout_weight="1"
@@ -261,8 +262,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/usermangeicon" />
 
                 <TextView
@@ -293,8 +294,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/showcourse" />
 
                 <TextView

@@ -8,23 +8,16 @@ import androidx.room.PrimaryKey;
 public class Categories_Pojo {
     @PrimaryKey(autoGenerate = true)
     private long categories_id;
-    private String course_name;
     private String categories_name;
 
+    public Categories_Pojo(String categories_name) {
+        this.categories_name = categories_name;
+    }
+
     @Ignore
-    public Categories_Pojo(long categories_id, String course_name, String categories_name) {
+    public Categories_Pojo(long categories_id, String categories_name) {
         this.categories_id = categories_id;
-        this.course_name = course_name;
         this.categories_name = categories_name;
-    }
-
-    public Categories_Pojo(String course_name, String categories_name) {
-        this.course_name = course_name;
-        this.categories_name = categories_name;
-    }
-
-    public Categories_Pojo(String catagories_name) {
-        this.categories_name = catagories_name;
     }
 
     public long getCategories_id() {
@@ -41,13 +34,5 @@ public class Categories_Pojo {
 
     public void setCategories_name(String categories_name) {
         this.categories_name = categories_name;
-    }
-
-    public String getCourse_name() {
-        return course_name;
-    }
-
-    public void setCourse_name(String course_name) {
-        this.course_name = course_name;
     }
 }

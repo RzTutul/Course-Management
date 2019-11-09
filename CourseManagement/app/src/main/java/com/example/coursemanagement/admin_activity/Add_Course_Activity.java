@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,8 @@ import com.example.coursemanagement.R;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Categories_Pojo;
 import com.example.coursemanagement.entitites.Course_Pojo;
+import com.example.coursemanagement.user_activites.CourseList_MainActivity;
+import com.example.coursemanagement.user_activites.Enroll_List_activity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -97,6 +100,13 @@ public class Add_Course_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
+
+        setTitle("Add Course");
+
+        ///Add Back Button at Action bar..
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         courseidET = findViewById(R.id.couseID);
         coursenameET = findViewById(R.id.CouseNameID);
         coursedescpET = findViewById(R.id.couseDescID);
@@ -114,15 +124,15 @@ public class Add_Course_Activity extends AppCompatActivity {
         CourseImage = findViewById(R.id.CourseImage);
         Catagories = CourseDatebase.getInstance(this).getCatagoriesDao().getCatagories();
 
-        if (Catagories.isEmpty())
+        if (Catagories.size()==0)
         {
 
-            Categories_Pojo defaultval = new Categories_Pojo("null","Select Categories");
-            Categories_Pojo cata1 = new Categories_Pojo("Java Porgramming Basic","Programming Language");
-            Categories_Pojo cata2 = new Categories_Pojo("Mobile App development Basic","Mobile App Development");
-            Categories_Pojo cata3 = new Categories_Pojo("Web App development","Web  Development");
-            Categories_Pojo cata4 = new Categories_Pojo("Game development","Game Development");
-            Categories_Pojo cata5 = new Categories_Pojo("Graphic Desing","Desing");
+            Categories_Pojo defaultval = new Categories_Pojo("Select Categories");
+            Categories_Pojo cata1 = new Categories_Pojo("Programming Language");
+            Categories_Pojo cata2 = new Categories_Pojo("Mobile App Development");
+            Categories_Pojo cata3 = new Categories_Pojo("Web  Development");
+            Categories_Pojo cata4 = new Categories_Pojo("Game Development");
+            Categories_Pojo cata5 = new Categories_Pojo("Desing");
             CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(defaultval);
             CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata1);
             CourseDatebase.getInstance(this).getCatagoriesDao().addNewCatagories(cata2);
@@ -333,4 +343,19 @@ public class Add_Course_Activity extends AppCompatActivity {
         }
 
     }
+
+    ///For Back button at action bar
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId()==android.R.id.home)
+        {
+            Intent intent = new Intent(Add_Course_Activity.this, AdminPanelForm_activity.class);
+            startActivity(intent);
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

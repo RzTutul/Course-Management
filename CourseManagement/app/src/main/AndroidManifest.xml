@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin_activity.AllenrollList_Activity"></activity>
-
+        <activity android:name=".admin_activity.Add_Categories_Activity"></activity>
+        <activity android:name=".admin_activity.AllenrollList_Activity" />
         <activity android:name=".admin_activity.Admin_CourseRV_Activity" />
         <activity android:name=".admin_activity.AdminPanelForm_activity" />
         <activity android:name=".user_activites.Enroll_List_activity" />

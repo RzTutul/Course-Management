@@ -12,15 +12,17 @@ import com.example.coursemanagement.user_activites.Enroll_List_activity;
 
 public class AdminPanelForm_activity extends AppCompatActivity {
 
-    private CardView addNewCourseCV, editCV,enrollCV;
+    private CardView addNewCourseCV, editCV,enrollCV,catagoriesCV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel_form);
+        setTitle("Admin Panel");
         editCV = findViewById(R.id.EditCV);
         addNewCourseCV = findViewById(R.id.AddcourseCV);
         enrollCV = findViewById(R.id.enrollCVID);
-        setTitle("Admin Panel");
+        catagoriesCV = findViewById(R.id.addCatagoriesCVID);
+
 
         addNewCourseCV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +38,7 @@ public class AdminPanelForm_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AdminPanelForm_activity.this, Admin_CourseRV_Activity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
         enrollCV.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +46,16 @@ public class AdminPanelForm_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminPanelForm_activity.this, AllenrollList_Activity.class);
                 startActivity(intent);
-                finish();
+
+            }
+        });
+
+        catagoriesCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminPanelForm_activity.this, Add_Categories_Activity.class);
+                startActivity(intent);
+
             }
         });
     }

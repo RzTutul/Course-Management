@@ -23,11 +23,22 @@ public interface CourseDao {
     @Query("select * from course_information_tbl order by courseID desc")
     List<Course_Pojo> getAllCourse();
 
+
+
     @Query("Select * from course_information_tbl where courseID like:id")
     Course_Pojo getCourseID(String id);
 
-    @Query("select * from course_information_tbl where courseID like:id")
-    List<Course_Pojo> getCourseValue(long id);
+
+
+    @Query("select * from course_information_tbl where courseCatagories like:catagories")
+    List<Course_Pojo> getCouseByCatagories(String catagories);
+
+    @Query("select courseName from course_information_tbl")
+    List<String> getAllCourseName();
+
+
+
+
 
 
 

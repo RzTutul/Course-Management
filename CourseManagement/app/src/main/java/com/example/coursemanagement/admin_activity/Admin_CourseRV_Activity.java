@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.coursemanagement.R;
 import com.example.coursemanagement.adapter.CourseAdminAdapterRV;
@@ -33,5 +35,9 @@ public class Admin_CourseRV_Activity extends AppCompatActivity {
         // GridLayoutManager gridLayout = new GridLayoutManager(this,2);
         A_CourseRV.setLayoutManager(llm);
         A_CourseRV.setAdapter(courseAdpaterRV);
+    }
+
+    public void AddCourse(View view) {
+        startActivity(new Intent(Admin_CourseRV_Activity.this,Add_Course_Activity.class));
     }
 }
