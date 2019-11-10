@@ -1,6 +1,9 @@
 package com.example.coursemanagement.adapter;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coursemanagement.R;
+import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.joinquerymodel.StudentWithEnrollCourse;
 
 import java.util.List;
@@ -36,7 +40,7 @@ private List<StudentWithEnrollCourse> studentWithEnrollCourseList;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllEnrollViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AllEnrollViewHolder holder, final int position) {
 
         holder.std_name.setText(studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_name());
         holder.std_phone.setText(studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_phone());
@@ -46,23 +50,57 @@ private List<StudentWithEnrollCourse> studentWithEnrollCourseList;
         holder.callbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "call", Toast.LENGTH_SHORT).show();
+
+                Uri phoneUri = Uri.parse("tel:"+studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_phone());
+                Intent callItent = new Intent(Intent.ACTION_CALL, phoneUri);
+                context.startActivity(callItent);
+
             }
         });
            holder.messagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "message", Toast.LENGTH_SHORT).show();
+
+                String msg = CourseDatebase.getInstance(context).getMessageBoxDao().getMessage();
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("smsto:"+studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_phone()));  // This ensures only SMS apps respond
+                intent.putExtra("sms_body", msg);
+                //intent.putExtra(Intent.EXTRA_STREAM, attachment);
+                if (intent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(intent);
+                }
+                else{
+                    Toast.makeText(context, "no component found", Toast.LENGTH_SHORT).show();
+                }
             }
         });
            holder.emailbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "call", Toast.LENGTH_SHORT).show();
+
+
+                String sub= CourseDatebase.getInstance(context).getEmailDao().getEmailSubject();
+                String mailText= CourseDatebase.getInstance(context).getEmailDao().getComposeEmail();
+
+
+
+
+                try{
+                    Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_email()));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, sub);
+                    intent.putExtra(Intent.EXTRA_TEXT, mailText);
+                    context.startActivity(intent);
+                }
+                catch(ActivityNotFoundException e){
+                    //TODO smth
+                }
             }
         });
 
     }
+
+
 
     @Override
     public int getItemCount() {

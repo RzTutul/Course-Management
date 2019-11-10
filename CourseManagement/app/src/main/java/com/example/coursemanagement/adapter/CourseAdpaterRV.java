@@ -43,6 +43,7 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
     private UserAuthPreference userAuthPreference;
     private UserIdPreference userIdPreference;
+
     Bitmap bmp;
 
     public CourseAdpaterRV(Context context, List<Course_Pojo> coursePojoList) {
@@ -60,6 +61,8 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
 
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             View view = layoutInflater.inflate(R.layout.course_row, parent,false);
+        Animation shake = AnimationUtils.loadAnimation(context, R.anim.layout_animation);
+        view.startAnimation(shake);
             return new CourseViewHolder(view) ;
 
 
@@ -84,7 +87,8 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
             @Override
             public void onClick(View view) {
 
-
+                Animation shake = AnimationUtils.loadAnimation(context, R.anim.shake);
+                view.startAnimation(shake);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Course Details");

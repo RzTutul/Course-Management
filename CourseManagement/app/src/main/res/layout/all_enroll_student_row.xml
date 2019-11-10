@@ -29,6 +29,7 @@
 
 
             <TextView
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/e_nameTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,26 +37,30 @@
                 android:text="RZ Tutul"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp"
-                android:textStyle="italic" />
+              />
 
             <TextView
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/e_phoneNumberTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="01924250146"
-                android:textColor="@color/colorAccent"
+                android:textColor="#DD6801"
                 android:textSize="20sp" />
 
             <TextView
+                android:fontFamily="@font/fontlight"
                 android:id="@+id/e_emailTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="rz@gmail.com"
+                android:textColor="#DD6801"
                 android:textSize="20sp" />
 
             <TextView
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/e_courseNameTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

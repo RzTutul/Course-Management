@@ -57,6 +57,7 @@ public class Add_Course_Activity extends AppCompatActivity {
     private Context context = this;
     private String id;
     private ArrayAdapter<String> Catagoriesadapter;
+    private String EditedImagePath = null;
 
 
     private DatePickerDialog.OnDateSetListener setDateListener =
@@ -166,6 +167,7 @@ public class Add_Course_Activity extends AppCompatActivity {
             courseidET.setText(coursePojo.getCourseID());
             coursenameET.setText(coursePojo.getCourseName());
             coursedescpET.setText(coursePojo.getCourseDesc());
+            EditedImagePath = coursePojo.getImage();
             Bitmap bmp = BitmapFactory.decodeFile(coursePojo.getImage());
             CourseImage.setImageBitmap(bmp);
 
@@ -214,10 +216,7 @@ public class Add_Course_Activity extends AppCompatActivity {
                 {
                     totalCost.setText("0");
                 }
-                else
-                {
-                    totalCost.setText("");
-                }
+
 
             }
 
@@ -327,14 +326,26 @@ public class Add_Course_Activity extends AppCompatActivity {
         cost = totalCost.getText().toString();
         String Catagories = Course_Catagories;
         String EnrollStatus = Course_EnrollStatus;
+        Course_Pojo course;
+
+        if (imagePath.isEmpty())
+        {
+            course = new Course_Pojo(id,name, descp, EditedImagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
 
 
-        Course_Pojo course = new Course_Pojo(id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
+        }
+        else
+        {
+            course = new Course_Pojo(id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
+
+        }
+
+
 
 
         final int Updated = CourseDatebase.getInstance(this).getCourseDao().UpdateCourse(course);
 
-        Toast.makeText(this, ""+Updated, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Updated!", Toast.LENGTH_SHORT).show();
         if (Updated > 0) {
             Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
             startActivity(intent);

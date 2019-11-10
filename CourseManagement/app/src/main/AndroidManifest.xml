@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.coursemanagement">
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin_activity.Add_Categories_Activity"></activity>
+        <activity android:name=".admin_activity.All_TeacherList_Activity"></activity>
+        <activity android:name=".admin_activity.Add_Teacher_Activity" />
+        <activity android:name=".admin_activity.Add_Categories_Activity" />
         <activity android:name=".admin_activity.AllenrollList_Activity" />
         <activity android:name=".admin_activity.Admin_CourseRV_Activity" />
         <activity android:name=".admin_activity.AdminPanelForm_activity" />

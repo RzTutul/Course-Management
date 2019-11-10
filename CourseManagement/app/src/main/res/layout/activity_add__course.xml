@@ -17,6 +17,8 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center"
+            android:fontFamily="@font/nikoshlight"
             android:id="@+id/couseID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,11 +28,14 @@
 
         <com.google.android.material.textfield.TextInputLayout
 
+
             android:layout_weight="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:gravity="center"
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/CouseNameID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,6 +49,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:gravity="center"
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/couseDescID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,12 +59,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
+
+        android:layout_gravity="center"
         android:layout_weight="5"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <Button
+            android:fontFamily="@font/nikoshlight"
             android:layout_marginTop="14dp"
             android:drawableLeft="@drawable/selectimagelogo"
             android:id="@+id/imagebtn"
@@ -74,7 +84,7 @@
             android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="80dp"
-            android:src="@drawable/imagepic"
+            android:src="@drawable/selectimage"
 
             />
 
@@ -84,19 +94,22 @@
 
 
         <LinearLayout
+
             android:layout_weight="5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="45dp"
             android:orientation="horizontal">
 
             <TextView
 
+                android:fontFamily="@font/nikoshlight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="From: " />
 
             <Button
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/fromDatebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,11 +117,14 @@
                 android:text="Date" />
 
             <TextView
+
+                android:fontFamily="@font/nikoshlight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="   To : " />
 
             <Button
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/toDatebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -124,6 +140,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:gravity="center"
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/totalHoursID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,6 +151,7 @@
 
 
         <Spinner
+
             android:layout_weight="5"
             android:id="@+id/catagoriesSP"
             android:layout_width="match_parent"
@@ -151,6 +170,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:gravity="center"
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/costID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,8 +182,9 @@
 
 
         <Button
-
-            android:background="@color/colorAccent"
+            android:textStyle="bold"
+            android:fontFamily="@font/nikoshlight"
+            android:background="@drawable/button_two_angle_shape"
             android:textColor="#fff"
             android:layout_weight="5"
             android:id="@+id/SaveBtn"
@@ -172,12 +194,13 @@
             android:text="Save" />
 
     <Button
+        android:fontFamily="@font/nikoshlight"
+        android:background="@drawable/button_two_angle_shape"
         android:visibility="gone"
         android:id="@+id/updatebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="5"
-        android:background="@color/colorAccent"
         android:text="Update"
         android:onClick="UpdateCourse"
         android:textColor="#fff" />

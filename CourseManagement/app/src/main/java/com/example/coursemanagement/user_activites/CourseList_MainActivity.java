@@ -1,46 +1,44 @@
 package com.example.coursemanagement.user_activites;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.coursemanagement.java_files.CustomTypefaceSpan;
 import com.example.coursemanagement.adapter.CourseAdpaterRV;
 import com.example.coursemanagement.R;
 import com.example.coursemanagement.admin_activity.AdminPanelForm_activity;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Course_Pojo;
 import com.example.coursemanagement.shared_preference.UserAuthPreference;
-import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CourseList_MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    private View view;
     private DrawerLayout mdrawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle mtoggle;
@@ -60,11 +58,16 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
         CourseRV = findViewById(R.id.courseRV);
         catagoriesSp = findViewById(R.id.cata_spinner);
 
-        setTitle("All Courses");
-        context = this;
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "fonts/thinfont.otf");
+        SpannableStringBuilder SS = new SpannableStringBuilder("All Courses");
+        SS.setSpan (new CustomTypefaceSpan("", font2), 0, SS.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(SS);
+
+
 
         // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
 
@@ -99,6 +102,7 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
         MenuItem userDashBoard = menuNav.findItem(R.id.userDashboard);
 
 
+
         if (status) {
             loginItem.setVisible(false);
             logoutItem.setVisible(true);
@@ -123,11 +127,6 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
 
                 if (Course_Catagories.equals("Select Categories"))
                 {
-                    courseAdpaterRV = new CourseAdpaterRV(context, coursePojoList);
-                    LinearLayoutManager llm = new LinearLayoutManager(context);
-                    // GridLayoutManager gridLayout = new GridLayoutManager(this,2);
-                    CourseRV.setLayoutManager(llm);
-                    CourseRV.setAdapter(courseAdpaterRV);
 
                 }
                 else
@@ -141,18 +140,13 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
                     // GridLayoutManager gridLayout = new GridLayoutManager(this,2);
                     CourseRV.setLayoutManager(llm);
                     CourseRV.setAdapter(courseAdpaterRV);
-
                 }
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
     }
 
     @Override
@@ -228,15 +222,16 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
 
         MenuItem filter = menu.findItem(R.id.filter);
 
+        view = findViewById(R.id.myview);
         switch (item.getItemId()) {
-
 
             case R.id.filter:
 
 
-                if (catagoriesSp.getVisibility() == View.VISIBLE )
+                if (view.getVisibility() == View.VISIBLE )
                 {
-                    catagoriesSp.setVisibility(View.GONE);
+                    view.setVisibility(View.GONE);
+
                     filter.setIcon(R.drawable.ic_filter_list_black_24dp);
                     courseAdpaterRV = new CourseAdpaterRV(context, coursePojoList);
                     LinearLayoutManager llm = new LinearLayoutManager(context);
@@ -249,11 +244,15 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
 
 
 
+
                 }
                 else
                 {
-                    catagoriesSp.setVisibility(View.VISIBLE);
+
                     filter.setIcon(R.drawable.ic_list_black_24dp);
+                    view.setVisibility(View.VISIBLE);
+                    Animation shake = AnimationUtils.loadAnimation(context, R.anim.shake);
+                    view.startAnimation(shake);
 
                 }
 
