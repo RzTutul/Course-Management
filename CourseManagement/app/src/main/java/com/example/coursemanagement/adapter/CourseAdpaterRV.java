@@ -98,24 +98,82 @@ public class CourseAdpaterRV extends RecyclerView.Adapter<CourseAdpaterRV.Course
                     View view1 = inflater.inflate(R.layout.course_list_custom_dilog,null);
 
                     TextView CourseName = view1.findViewById(R.id.dialg_CourseNamTV);
+                    TextView CourseDesc = view1.findViewById(R.id.dialg_CourseDescTV);
+                    TextView CourseDuration = view1.findViewById(R.id.dialg_CourseDurationID);
+                    TextView CourseTotalTIme = view1.findViewById(R.id.dialg_CourseTotalTime);
+                    TextView CourseCost = view1.findViewById(R.id.dialg_CourseCost);
+
+
+
                     ImageView CourseImage = view1.findViewById(R.id.dialog_courseImage);
                     CourseName.setText(courseFilter.get(position).getCourseName());
                     Bitmap bitmap = BitmapFactory.decodeFile(courseFilter.get(position).getImage());
                     CourseImage.setImageBitmap(bitmap);
+                CourseDesc.setText(courseFilter.get(position).getCourseDesc());
+                CourseDuration.setText(courseFilter.get(position).getCourseDuration());
+                CourseTotalTIme.setText(courseFilter.get(position).getTotalHours());
+                CourseCost.setText(String.valueOf(courseFilter.get(position).getCourseCost()));
+
+
+
 
 
                     final Button Enrollbtn = view1.findViewById(R.id.enrollbtn);
                     final Button WishListbtn = view1.findViewById(R.id.wishlistbtn);
 
                     builder.setView(view1);
-
                     final AlertDialog dialog = builder.create();
                     dialog.show();
+
                     Enrollbtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(context, "Enrolled", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+
+                            builder1.setTitle("Do you want enroll this course?");
+                            builder1.setIcon(R.drawable.enrollicondilog);
+
+
+                            builder1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    userAuthPreference = new UserAuthPreference(context);
+                                    boolean status = userAuthPreference.getLoginStatus();
+                                    userIdPreference = new UserIdPreference(context);
+
+                                    if (status)
+                                    {
+                                        Course_Pojo coursePojo = courseFilter.get(position);
+                                        String c_id = coursePojo.getCourseID();
+                                        long s_id = userIdPreference.getLoginID();
+
+                                        Enroll_list_Pojo enrollListPojo = new Enroll_list_Pojo(c_id,s_id);
+                                        long insertEnrol = CourseDatebase.getInstance(context).getEnrollDao().AddEntroll(enrollListPojo);
+                                        if (insertEnrol>0)
+                                        {
+                                            Toast.makeText(context, "Enrolled", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(context, Enroll_List_activity.class);
+                                            context.startActivity(intent);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Intent intent = new Intent(context, LoginFrom_activity.class);
+                                        context.startActivity(intent);
+
+                                    }
+                                }
+                            });
+
+                            builder1.setNegativeButton("No",null);
+
+                            AlertDialog dialog = builder1.create();
+                            dialog.show();
+
+
+
+
+
                         }
                     });
                     WishListbtn.setOnClickListener(new View.OnClickListener() {

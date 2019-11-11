@@ -12,22 +12,24 @@ public class StudentInfo_Pojo {
     private String std_email;
     private String std_phone;
     private String std_password;
-
+    private String std_image;
 
     @Ignore
-    public StudentInfo_Pojo(long std_id, String std_name, String std_email, String std_phone, String std_password) {
+    public StudentInfo_Pojo(long std_id, String std_name, String std_email, String std_phone, String std_password, String std_image) {
         this.std_id = std_id;
         this.std_name = std_name;
         this.std_email = std_email;
         this.std_phone = std_phone;
         this.std_password = std_password;
+        this.std_image = std_image;
     }
 
-    public StudentInfo_Pojo(String std_name, String std_email, String std_phone, String std_password) {
+    public StudentInfo_Pojo(String std_name, String std_email, String std_phone, String std_password, String std_image) {
         this.std_name = std_name;
         this.std_email = std_email;
         this.std_phone = std_phone;
         this.std_password = std_password;
+        this.std_image = std_image;
     }
 
     public long getStd_id() {
@@ -68,5 +70,13 @@ public class StudentInfo_Pojo {
 
     public void setStd_password(String std_password) {
         this.std_password = std_password;
+    }
+
+    public String getStd_image() {
+        return std_image;
+    }
+
+    public void setStd_image(String std_image) {
+        this.std_image = std_image;
     }
 }

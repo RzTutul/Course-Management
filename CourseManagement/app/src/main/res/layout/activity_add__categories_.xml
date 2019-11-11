@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1catagories"
+    android:background="@drawable/catagoriesbg"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".admin_activity.Add_Categories_Activity">
@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:fontFamily="@font/nikoshlight"
             android:id="@+id/cataETID"
             android:textColor="#fff"
             android:gravity="center"
@@ -27,11 +28,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:fontFamily="@font/nikoshlight"
         android:id="@+id/cataSavebtnID"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_two_angle_shape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="Save" />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_two_angle_shape"
+        android:text="Save"
+        android:textColor="#fff" />
 </LinearLayout>

@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:weightSum="3"
-    >
+    android:weightSum="3">
 
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/dialog_courseImage"
@@ -21,46 +20,141 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/dialg_CourseNamTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nikoshlight"
             android:gravity="center"
+            android:text="Android App"
             android:textColor="@color/colorAccent"
-            android:textSize="30sp"
-            android:text="Android App" />
+            android:textSize="30sp" />
+
 
         <TextView
+
+            android:id="@+id/dialg_CourseDescTV"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text" />
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/fontlight"
+            android:text="Course Description" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:fontFamily="@font/fontlight"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Duration:" />
+
+                  <TextView
+                      android:fontFamily="@font/nikoshlight"
+                      android:id="@+id/dialg_CourseDurationID"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="29 oct 123:" />
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:fontFamily="@font/fontlight"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Total Time:" />
+
+            <TextView
+                android:fontFamily="@font/nikoshlight"
+                android:id="@+id/dialg_CourseTotalTime"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="10" />
+
+
+        </LinearLayout>
+
+
+ <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:fontFamily="@font/fontlight"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Total TK:" />
+
+            <TextView
+                android:id="@+id/dialg_CourseCost"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="1000" />
+
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
 
         android:orientation="vertical">
 
         <Button
+            android:fontFamily="@font/nikoshlight"
+            android:background="@drawable/button_two_angle_shape"
             android:id="@+id/enrollbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enroll" />
 
         <Button
+            android:fontFamily="@font/nikoshlight"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_two_angle_shape"
             android:id="@+id/wishlistbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/wishicon"
             android:text="Add To Wishlist"
             android:textAllCaps="false" />
 

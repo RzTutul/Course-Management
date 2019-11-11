@@ -3,10 +3,14 @@ package com.example.coursemanagement.adapter;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +40,9 @@ private List<StudentWithEnrollCourse> studentWithEnrollCourseList;
     public AllEnrollViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.all_enroll_student_row,parent,false);
+
+        Animation shake = AnimationUtils.loadAnimation(context, R.anim.layout_animation);
+        view.startAnimation(shake);
         return new AllEnrollListAdapter.AllEnrollViewHolder(view);
     }
 
@@ -46,6 +53,8 @@ private List<StudentWithEnrollCourse> studentWithEnrollCourseList;
         holder.std_phone.setText(studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_phone());
         holder.std_email.setText(studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_email());
         holder.courseName.setText(studentWithEnrollCourseList.get(position).coursePojo.getCourseName());
+        Bitmap bitmap = BitmapFactory.decodeFile(studentWithEnrollCourseList.get(position).studentInfoPojo.getStd_image());
+        holder.stdImage.setImageBitmap(bitmap);
 
         holder.callbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +132,8 @@ private List<StudentWithEnrollCourse> studentWithEnrollCourseList;
             callbtn = itemView.findViewById(R.id.e_callbtn);
             messagebtn = itemView.findViewById(R.id.e_messagebtn);
             emailbtn = itemView.findViewById(R.id.e_emailbtn);
+
+            stdImage = itemView.findViewById(R.id.e_stdImage);
 
         }
     }

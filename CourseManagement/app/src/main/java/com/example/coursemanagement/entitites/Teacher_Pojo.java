@@ -10,17 +10,24 @@ public class Teacher_Pojo {
     private long t_id;
     private String t_name;
     private String t_phone;
+    private String t_email;
+    private String image;
+
 
     @Ignore
-    public Teacher_Pojo(long t_id, String t_name, String t_phone) {
+    public Teacher_Pojo(long t_id, String t_name, String t_phone, String t_email, String image) {
         this.t_id = t_id;
         this.t_name = t_name;
         this.t_phone = t_phone;
+        this.t_email = t_email;
+        this.image = image;
     }
 
-    public Teacher_Pojo(String t_name, String t_phone) {
+    public Teacher_Pojo(String t_name, String t_phone, String t_email, String image) {
         this.t_name = t_name;
         this.t_phone = t_phone;
+        this.t_email = t_email;
+        this.image = image;
     }
 
     public long getT_id() {
@@ -45,5 +52,21 @@ public class Teacher_Pojo {
 
     public void setT_phone(String t_phone) {
         this.t_phone = t_phone;
+    }
+
+    public String getT_email() {
+        return t_email;
+    }
+
+    public void setT_email(String t_email) {
+        this.t_email = t_email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -6,18 +6,20 @@
     <group android:checkableBehavior="single">
 
         <item
-android:icon="@drawable/ic_home_black_24dp"
+android:icon="@drawable/homeicon"
             android:id="@+id/Home"
 
             android:title="Home"
             />
 
         <item
+            android:icon="@drawable/dashboard"
             android:id="@+id/Admindashboard"
             android:title="Admin DashBoard"
             />
 
         <item
+            android:icon="@drawable/dashboard"
             android:id="@+id/userDashboard"
             android:title="DashBoard"
 
@@ -31,32 +33,36 @@ android:icon="@drawable/ic_home_black_24dp"
         <menu>
 
             <item
-                android:icon="@drawable/ic_share_black_24dp"
+                android:icon="@drawable/shareitcon"
                 android:id="@+id/ShareID"
                 android:title="Share with Friends"
                 />
 
             <item
+                android:icon="@drawable/abouticon"
                 android:id="@+id/aboutId"
                 android:title="About Us"
                 />
         </menu>
 
     </item>
-    <item android:title="-----">
+    <item android:title="Security">
         <menu>
 
             <item
+
                 android:icon="@drawable/loginicon"
                 android:id="@+id/loginID"
                 android:title="Login"
                 />
 
             <item
+                android:icon="@drawable/logouticon"
                 android:id="@+id/logoutid"
                 android:title="Logout"
                 />
               <item
+                  android:icon="@drawable/exiticon"
                 android:id="@+id/exitID"
                 android:title="Exit"
                 />

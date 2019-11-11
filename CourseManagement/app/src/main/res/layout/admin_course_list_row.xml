@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="6dp"
     android:orientation="vertical"
     app:cardCornerRadius="4dp"
-    app:cardElevation="5dp"
-    android:layout_margin="6dp"
-    >
+    app:cardElevation="5dp">
 
 
     <LinearLayout
@@ -37,15 +36,16 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/row_A_courseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nikoshlight"
                     android:gravity="center"
                     android:text="Course name"
                     android:textColor="@color/colorPrimary"
@@ -56,6 +56,7 @@
                     android:id="@+id/row_A_courseDesp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:fontFamily="@font/fontlight"
                     android:text="Course Description"
                     android:textSize="15dp" />
 
@@ -63,16 +64,17 @@
 
 
             <LinearLayout
-                android:layout_weight="1.2"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/row_A_courseDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/dateicon"
+                    android:fontFamily="@font/fontlight"
                     android:text=" 26 oct - 21 Feb 2019" />
 
 
@@ -86,10 +88,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/timeicon"
+                        android:fontFamily="@font/fontlight"
                         android:text=" Total Hours:" />
 
 
                     <TextView
+                        android:fontFamily="@font/nikoshlight"
                         android:id="@+id/row_A_total_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -104,10 +108,10 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:layout_marginLeft="40dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
@@ -115,18 +119,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/fontlight"
                             android:text="TK."
                             android:textSize="20sp" />
 
                         <TextView
-
-                            android:textStyle="bold"
                             android:id="@+id/row_A_Cost"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentBottom="true"
+                            android:fontFamily="@font/nikoshlight"
                             android:text="17000"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -141,10 +146,7 @@
                 </RelativeLayout>
 
 
-
             </LinearLayout>
-
-
 
 
         </LinearLayout>

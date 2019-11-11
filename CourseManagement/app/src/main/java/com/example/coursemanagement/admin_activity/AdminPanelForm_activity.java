@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ScrollView;
 
 import com.example.coursemanagement.R;
+import com.example.coursemanagement.user_activites.CourseList_MainActivity;
 import com.example.coursemanagement.user_activites.Enroll_List_activity;
 
 public class AdminPanelForm_activity extends AppCompatActivity {
@@ -88,5 +89,16 @@ public class AdminPanelForm_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void UserModeCV(View view) {
+        Intent intent = new Intent(AdminPanelForm_activity.this, CourseList_MainActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void WishListCV(View view) {
+        Intent intent = new Intent(AdminPanelForm_activity.this, AllenrollList_Activity.class);
+        startActivity(intent);
     }
 }

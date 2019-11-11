@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="3"
+    android:background="@drawable/singupbg"
     tools:context=".user_activites.StudentRegistrationFrom_Activity">
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
@@ -22,6 +24,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:textStyle="bold"
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/stdNameETID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,6 +38,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:textStyle="bold"
+                android:fontFamily="@font/nikoshlight"
 
                 android:id="@+id/stdEmailETID"
                 android:layout_width="match_parent"
@@ -48,6 +54,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:textStyle="bold"
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/stdPhoneETID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,11 +65,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+
             android:layout_width="match_parent"
             app:passwordToggleEnabled="true"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/stdPasswordETID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,21 +82,53 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:fontFamily="@font/nikoshlight"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:fontFamily="@font/nikoshlight"
                 android:id="@+id/stdConfirmPassETID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:inputType="textPassword"
-                android:hint="confirm Password" />
+                android:hint="Confirm Password" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:background="#AA8C64"
+            android:onClick="SelectImageForStudent"
+            android:fontFamily="@font/nikoshlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            />
+
+          <ImageView
+              android:id="@+id/selectImageView"
+              android:layout_marginLeft="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="Select Image"
+              android:src="@drawable/selectimage"
+            />
+
+
+    </LinearLayout>
+
+
     <Button
-        android:background="@drawable/buttonshapegreen"
+        android:fontFamily="@font/nikoshlight"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_two_angle_shape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".1"

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:orientation="vertical">
-
+    android:layout_height="110dp"
+    android:layout_margin="6dp"
+    android:orientation="vertical"
+    app:cardElevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,49 +13,90 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/teacherImageID"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/maycricleimage" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="2.2"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/row_teacherName"
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Teacher Name" />
 
             <TextView
-                android:id="@+id/row_teacherPhone"
-                android:textSize="17sp"
-                android:textStyle="italic"
+                android:fontFamily="@font/nikoshlight"
+                android:id="@+id/teacherNameID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="01924250146" />
+                android:text="RZ Tutul"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                />
+
+            <TextView
+                android:fontFamily="@font/nikoshlight"
+                android:id="@+id/teacherPhoneID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="01924250146"
+                android:textColor="#DD6801"
+                android:textSize="20sp" />
+
+            <TextView
+                android:fontFamily="@font/fontlight"
+                android:id="@+id/teacherEmailID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="rz@gmail.com"
+                android:textColor="#DD6801"
+                android:textSize="20sp" />
+
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
 
-            <Button
+            <RelativeLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Call" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Message" />
 
+                <Button
+
+                    android:id="@+id/t_callbtn"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawableEnd="@drawable/ic_call_black_24dp"
+                    android:drawablePadding="10dp" />
+
+
+
+                <Button
+                    android:id="@+id/t_messagebtn"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/t_callbtn"
+                    android:layout_alignParentRight="true"
+                    android:drawableEnd="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp" />
+
+
+            </RelativeLayout>
 
         </LinearLayout>
 

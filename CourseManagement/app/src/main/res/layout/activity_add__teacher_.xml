@@ -14,7 +14,9 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/teacherNameID"
+            android:fontFamily="@font/nikoshlight"
+            android:gravity="center"
+            android:id="@+id/tNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Teacher Name" />
@@ -25,18 +27,78 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/teacherPhoneID"
+            android:fontFamily="@font/nikoshlight"
+            android:gravity="center"
+            android:id="@+id/tPhoneET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:hint="Enter Phone Number" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:fontFamily="@font/nikoshlight"
+            android:gravity="center"
+            android:id="@+id/tEmailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Enter Email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<LinearLayout
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <Button
+
+        android:fontFamily="@font/nikoshlight"
+        android:onClick="SelectTeacherImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Image"
+        android:textAllCaps="false"
+        />
+
+    <ImageView
+        android:id="@+id/tImageView"
+        android:layout_marginLeft="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/selectimage"
+        />
+
+</LinearLayout>
+
 
     <Button
+        android:id="@+id/tSvaebtn"
+        android:background="@drawable/buttonshapegreen"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nikoshlight"
        android:onClick="SaveTeacherInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
         />
+        <Button
+            android:id="@+id/tUpadteBtn"
+            android:visibility="gone"
+        android:background="@drawable/buttonshapegreen"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nikoshlight"
+       android:onClick="UpdateTeacherInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        />
+
+
 </LinearLayout>

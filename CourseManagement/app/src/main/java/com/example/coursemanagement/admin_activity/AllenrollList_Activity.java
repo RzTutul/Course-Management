@@ -11,8 +11,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +36,7 @@ import com.example.coursemanagement.adapter.AllEnrollListAdapter;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.EmailBox_Pojo;
 import com.example.coursemanagement.entitites.MessageBox_Pojo;
+import com.example.coursemanagement.java_files.CustomTypefaceSpan;
 import com.example.coursemanagement.joinquerymodel.StudentWithEnrollCourse;
 
 import java.util.List;
@@ -60,6 +64,14 @@ public class AllenrollList_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allenroll_list_);
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "fonts/thinfont.otf");
+        SpannableStringBuilder SS = new SpannableStringBuilder("All Student");
+        SS.setSpan (new CustomTypefaceSpan("", font2), 0, SS.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(SS);
+
+        ///Add Back Button at Action bar..
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         context = this;
         totalEnrollCounterTV = findViewById(R.id.totalenrollCountTV);
@@ -223,6 +235,13 @@ public class AllenrollList_Activity extends AppCompatActivity {
 
                 break;
 
+            case (android.R.id.home):
+            {
+                Intent intent = new Intent(AllenrollList_Activity.this, AdminPanelForm_activity.class);
+                startActivity(intent);
+                this.finish();
+            }
+
                 default:
 
 
@@ -301,4 +320,10 @@ public class AllenrollList_Activity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
 }

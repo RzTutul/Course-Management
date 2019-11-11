@@ -11,8 +11,11 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +32,7 @@ import com.example.coursemanagement.R;
 import com.example.coursemanagement.db.CourseDatebase;
 import com.example.coursemanagement.entitites.Categories_Pojo;
 import com.example.coursemanagement.entitites.Course_Pojo;
+import com.example.coursemanagement.java_files.CustomTypefaceSpan;
 import com.example.coursemanagement.user_activites.CourseList_MainActivity;
 import com.example.coursemanagement.user_activites.Enroll_List_activity;
 
@@ -57,7 +61,6 @@ public class Add_Course_Activity extends AppCompatActivity {
     private Context context = this;
     private String id;
     private ArrayAdapter<String> Catagoriesadapter;
-    private String EditedImagePath = null;
 
 
     private DatePickerDialog.OnDateSetListener setDateListener =
@@ -102,7 +105,11 @@ public class Add_Course_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__course);
 
-        setTitle("Add Course");
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "fonts/thinfont.otf");
+        SpannableStringBuilder SS = new SpannableStringBuilder("Add Course");
+        SS.setSpan (new CustomTypefaceSpan("", font2), 0, SS.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(SS);
+
 
         ///Add Back Button at Action bar..
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -167,7 +174,7 @@ public class Add_Course_Activity extends AppCompatActivity {
             courseidET.setText(coursePojo.getCourseID());
             coursenameET.setText(coursePojo.getCourseName());
             coursedescpET.setText(coursePojo.getCourseDesc());
-            EditedImagePath = coursePojo.getImage();
+            imagePath = coursePojo.getImage();
             Bitmap bmp = BitmapFactory.decodeFile(coursePojo.getImage());
             CourseImage.setImageBitmap(bmp);
 
@@ -241,15 +248,20 @@ public class Add_Course_Activity extends AppCompatActivity {
         String Catagories = Course_Catagories;
         String EnrollStatus = Course_EnrollStatus;
 
-        Course_Pojo course = new Course_Pojo(c_id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
+
+        try {
+            Course_Pojo course = new Course_Pojo(c_id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
 
 
-        final long insert = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
+            final long insert = CourseDatebase.getInstance(this).getCourseDao().InsertNewCourse(course);
 
-        if (insert > 0) {
-            Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
-            startActivity(intent);
+            if (insert > 0) {
+                Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
+                startActivity(intent);
 
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
 
     }
@@ -328,17 +340,11 @@ public class Add_Course_Activity extends AppCompatActivity {
         String EnrollStatus = Course_EnrollStatus;
         Course_Pojo course;
 
-        if (imagePath.isEmpty())
-        {
-            course = new Course_Pojo(id,name, descp, EditedImagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
 
-
-        }
-        else
-        {
             course = new Course_Pojo(id,name, descp, imagePath, duration, totalTime, Catagories, EnrollStatus, Integer.parseInt(cost));
 
-        }
+
+
 
 
 

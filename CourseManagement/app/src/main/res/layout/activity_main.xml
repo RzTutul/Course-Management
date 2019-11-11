@@ -15,7 +15,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="@drawable/buttonshapegreen"
+        android:background="#D3B1B1"
         android:visibility="gone"
         android:id="@+id/myview"
         android:layout_width="match_parent"
@@ -51,8 +51,9 @@
         android:layout_gravity="start"
         android:background="#ffffff"
         app:headerLayout="@layout/navigation_header"
-        app:itemIconTint="@color/colorAccent"
-        app:itemTextColor="@color/colorPrimary"
+        app:itemIconTint="#0B3DF3"
+        app:itemTextColor="#0D8AF0"
+        app:itemTextAppearance="@font/fontlight"
         app:menu="@menu/menu_drawerlayout"
 
         />

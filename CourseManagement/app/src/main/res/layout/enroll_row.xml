@@ -43,6 +43,7 @@
                 android:layout_height="0dp">
 
                 <TextView
+                    android:fontFamily="@font/nikoshlight"
                     android:id="@+id/e_row_courseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/fontlight"
                     android:id="@+id/e_row_courseDesp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -69,6 +71,7 @@
                 android:layout_height="0dp">
 
                 <TextView
+                    android:fontFamily="@font/nikoshlight"
                     android:id="@+id/e_row_courseDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,7 +86,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-
+                        android:fontFamily="@font/nikoshlight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/timeicon"
@@ -110,13 +113,14 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:fontFamily="@font/fontlight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TK."
                             android:textSize="20sp" />
 
                         <TextView
-
+                            android:fontFamily="@font/nikoshlight"
                             android:id="@+id/e_row_Cost"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
