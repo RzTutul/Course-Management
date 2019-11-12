@@ -150,8 +150,6 @@ public class Add_Course_Activity extends AppCompatActivity {
 
         }
 
-
-
        // Catagories = getResources().getStringArray(R.array.CatagoriesName);
 
 
@@ -258,6 +256,7 @@ public class Add_Course_Activity extends AppCompatActivity {
             if (insert > 0) {
                 Intent intent = new Intent(Add_Course_Activity.this, Admin_CourseRV_Activity.class);
                 startActivity(intent);
+                finish();
 
             }
         } catch (NumberFormatException e) {

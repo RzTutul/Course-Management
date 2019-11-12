@@ -67,4 +67,12 @@ public class Admin_CourseRV_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Admin_CourseRV_Activity.this, AdminPanelForm_activity.class);
+        startActivity(intent);
+        this.finish();
+        super.onBackPressed();
+    }
 }

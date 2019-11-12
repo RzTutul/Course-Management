@@ -311,21 +311,17 @@ public class CourseList_MainActivity extends AppCompatActivity implements Naviga
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.drawable.abouticon);
-        builder.setTitle("Do you want exit?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setNegativeButton("Cancel",null);
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        CourseList_MainActivity.super.onBackPressed();
+                        finish();
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-
-        super.onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
